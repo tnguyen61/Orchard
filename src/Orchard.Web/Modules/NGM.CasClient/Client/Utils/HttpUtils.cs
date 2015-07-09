@@ -25,8 +25,6 @@ namespace NGM.CasClient.Client.Utils {
             var restClient = new RestClient();
             var response = restClient.Get(url);
 
-            if (requireHttp200 || response.StatusCode != HttpStatusCode.OK)
-                return null;
 
             return response.Body;
         }
@@ -50,9 +48,6 @@ namespace NGM.CasClient.Client.Utils {
             BodyContent content = new WwwFormUrlEncodedContent(postData);
 
             var response = restClient.Post(url, content);
-
-            if (requireHttp200 || response.StatusCode != HttpStatusCode.OK)
-                return null;
 
             return response.Body;
         }
