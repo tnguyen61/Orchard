@@ -1,5 +1,4 @@
-﻿using NGM.CasClient.Client;
-using Orchard.Security;
+﻿using Orchard.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +10,12 @@ namespace NGM.CasClient.Controllers
     public class CasAccountController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly ICASClient _casClient;
 
 
         public CasAccountController(
-            IAuthenticationService authenticationService,
-            ICASClient casClient
+            IAuthenticationService authenticationService
         ){
             _authenticationService = authenticationService;
-            _casClient = casClient;
         }
 
         [AlwaysAccessible]
@@ -27,7 +23,7 @@ namespace NGM.CasClient.Controllers
             if (_authenticationService.GetAuthenticatedUser() != null)
                 return Redirect("~/");
 
-            return _casClient.RedirectToLoginPage();
+            return new RedirectResult(DotNetCasClient.CasAuthentication.CasServerLoginUrl); //TODO pull form settings???
         }
     }
 }
