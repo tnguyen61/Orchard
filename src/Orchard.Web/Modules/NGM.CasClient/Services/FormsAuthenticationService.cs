@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using NGM.CasClient.Client.Security;
 using Orchard.ContentManagement;
 using Orchard.Environment.Configuration;
 using Orchard.Environment.Extensions;
@@ -10,7 +11,6 @@ using Orchard.Mvc;
 using Orchard.Security;
 using Orchard.Services;
 using Orchard.Users.Models;
-using DotNetCasClient.Security;
 
 namespace NGM.CasClient.Services {
     [OrchardSuppressDependency("Orchard.Security.Providers.FormsAuthenticationService")]
@@ -19,17 +19,20 @@ namespace NGM.CasClient.Services {
         private readonly IClock _clock;
         private readonly IContentManager _contentManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICasIdentityRetriever _casIdentityRetriever;
         private IUser _signedInUser;
         private bool _isAuthenticated = false;
 
         public FormsAuthenticationService(ShellSettings settings, 
             IClock clock, 
             IContentManager contentManager, 
-            IHttpContextAccessor httpContextAccessor) {
+            IHttpContextAccessor httpContextAccessor,
+            ICasIdentityRetriever casIdentityRetriever) {
             _settings = settings;
             _clock = clock;
             _contentManager = contentManager;
             _httpContextAccessor = httpContextAccessor;
+            _casIdentityRetriever = casIdentityRetriever;
 
             Logger = NullLogger.Instance;
 
@@ -148,7 +151,7 @@ namespace NGM.CasClient.Services {
                 if (userData == null)
                     return null;
 
-                var user = GetUserByUserNameOrEmail(((CasPrincipal) httpContext.User).Identity.Name); // TODO pull correct mail
+                var user = GetUserByUserNameOrEmail(_casIdentityRetriever.GetId((CasPrincipal) httpContext.User));
 
                 if (user == null)
                     return null;
