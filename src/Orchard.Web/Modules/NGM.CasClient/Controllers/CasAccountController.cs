@@ -1,4 +1,5 @@
-﻿using Orchard.Security;
+﻿using DotNetCasClient;
+using Orchard.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,11 @@ namespace NGM.CasClient.Controllers
             if (_authenticationService.GetAuthenticatedUser() != null)
                 return Redirect("~/");
 
-            return new RedirectResult(DotNetCasClient.CasAuthentication.CasServerLoginUrl); //TODO pull form settings???
+
+
+            var url = CasAuthentication.FormsLoginUrl + "?service=" + Uri.EscapeUriString("http://localhost:30321/OrchardLocal/");
+
+            return new RedirectResult(url);
         }
     }
 }
