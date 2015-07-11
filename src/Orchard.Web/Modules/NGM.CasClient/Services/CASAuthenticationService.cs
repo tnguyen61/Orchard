@@ -11,10 +11,11 @@ using Orchard.Mvc;
 using Orchard.Security;
 using Orchard.Services;
 using Orchard.Users.Models;
+using NGM.CasClient.Models;
 
 namespace NGM.CasClient.Services {
     [OrchardSuppressDependency("Orchard.Security.Providers.FormsAuthenticationService")]
-    public class FormsAuthenticationService : IAuthenticationService {
+    public class CASAuthenticationService : IAuthenticationService {
         private readonly ShellSettings _settings;
         private readonly IClock _clock;
         private readonly IContentManager _contentManager;
@@ -23,7 +24,7 @@ namespace NGM.CasClient.Services {
         private IUser _signedInUser;
         private bool _isAuthenticated = false;
 
-        public FormsAuthenticationService(ShellSettings settings, 
+        public CASAuthenticationService(ShellSettings settings, 
             IClock clock, 
             IContentManager contentManager, 
             IHttpContextAccessor httpContextAccessor,
@@ -145,32 +146,9 @@ namespace NGM.CasClient.Services {
                 return _signedInUser = _contentManager.Get(userId).As<IUser>();
             }
             else if (httpContext.User is CasPrincipal) {
-                var userData = FormsAuthentication.Decrypt(
-                    httpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
-
-                if (userData == null)
-                    return null;
-
-                var user = GetUserByUserNameOrEmail(_casIdentityRetriever.GetId((CasPrincipal) httpContext.User));
-
-                if (user == null)
-                    return null;
-
-                _isAuthenticated = true;
-                return _signedInUser = user;
+                return CASUser.Get((CasPrincipal)httpContext.User);
             }
             return null;
-        }
-
-        public IUser GetUserByUserNameOrEmail(string userNameOrEmail) {
-            var lowerName = userNameOrEmail == null ? "" : userNameOrEmail.ToLowerInvariant();
-
-            var user = _contentManager.Query<UserPart, UserPartRecord>().Where(u => u.NormalizedUserName == lowerName).List().FirstOrDefault();
-
-            if (user == null)
-                user = _contentManager.Query<UserPart, UserPartRecord>().Where(u => u.Email == userNameOrEmail).List().FirstOrDefault();
-
-            return user.As<IUser>();
         }
 
         private string GetCookiePath(HttpContextBase httpContext) {
