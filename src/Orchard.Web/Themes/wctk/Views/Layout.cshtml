@@ -107,6 +107,24 @@
                                             </ul>
                                         </li>
                                     </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <li>
+                                                <a href="~/Admin/">@(User.Identity.Name)</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Users/Account/Logoff">Log Off</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+
+                                            <li>
+                                                <a href="~/Admin/">Login</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </div>
                             </div>
                         </div>
