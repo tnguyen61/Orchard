@@ -1,5 +1,6 @@
 ﻿using NGM.CasClient.Client;
 using Orchard.Security;
+using Orchard.UI.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,12 @@ namespace NGM.CasClient.Controllers
 
             return _casClient.RedirectToLoginPage();
         }
+
+        [Admin]
+        public void LogOff()
+        {
+            _casClient.SingleSignOut(HttpContext);
+        }
+
     }
 }

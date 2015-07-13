@@ -29,6 +29,22 @@ namespace NGM.CasClient {
                         },
                     new MvcRouteHandler())
             };
+            yield return new RouteDescriptor
+            {
+                Priority = 100,
+                Route = new Route(
+                    "Users/Account/Logoff", // this is the name of the page url
+                    new RouteValueDictionary {
+                            {"area", "NGM.CasClient"}, // this is the name of your module
+                            {"controller", "CasAccount"},
+                            {"action", "LogOff"}
+                        },
+                    new RouteValueDictionary(),
+                    new RouteValueDictionary {
+                            {"area", "NGM.CasClient"} // this is the name of your module
+                        },
+                    new MvcRouteHandler())
+            };
         }
 
     }
