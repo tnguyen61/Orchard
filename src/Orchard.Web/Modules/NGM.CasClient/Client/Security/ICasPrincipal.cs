@@ -70,5 +70,8 @@ namespace NGM.CasClient.Client.Security {
         IEnumerable<string> Proxies {
             get;
         }
+
+        maxAttributes MaxAttributes { get; }
+
     }
 }

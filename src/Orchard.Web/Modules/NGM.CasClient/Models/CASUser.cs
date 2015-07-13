@@ -31,7 +31,7 @@ namespace NGM.CasClient.Models {
 
             var user = new CASUser() { };
 
-            user.Email = principal.Identity.Name;
+            user.Email = principal.MaxAttributes.EmailAddress;
 
            
 

@@ -71,6 +71,9 @@ namespace NGM.CasClient.Client.Security {
             get;
             private set;
         }
+
+        public maxAttributes MaxAttributes { get; private set; }
+
         #endregion
 
         # region IPrincipal Members
@@ -131,7 +134,10 @@ namespace NGM.CasClient.Client.Security {
         /// <param name="proxies">
         /// The proxy path associated with this Principal
         /// </param>
-        public CasPrincipal(IAssertion assertion, string proxyGrantingTicket, IEnumerable<string> proxies) {
+        public CasPrincipal(IAssertion assertion, string proxyGrantingTicket, IEnumerable<string> proxies) : this(assertion, proxyGrantingTicket, proxies, new maxAttributes()) { }
+
+        public CasPrincipal(IAssertion assertion, string proxyGrantingTicket, IEnumerable<string> proxies, maxAttributes attributes)
+        {
             Argument.ThrowIfNull(assertion, "assertion", "assertion cannot be null.");
 
             Identity = new GenericIdentity(assertion.PrincipalName, CAS_AUTH_TYPE);
@@ -139,7 +145,9 @@ namespace NGM.CasClient.Client.Security {
             ProxyGrantingTicket = proxyGrantingTicket;
 
             Proxies = proxies ?? Enumerable.Empty<string>();
+            this.MaxAttributes = attributes;
         }
+
         #endregion
     }
 }

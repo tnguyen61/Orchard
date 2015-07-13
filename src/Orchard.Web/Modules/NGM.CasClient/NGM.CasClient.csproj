@@ -95,6 +95,7 @@
     <Compile Include="Client\Security\CasPrincipal.cs" />
     <Compile Include="Client\Security\IAssertion.cs" />
     <Compile Include="Client\Security\ICasPrincipal.cs" />
+    <Compile Include="Client\Security\maxAttributes.cs" />
     <Compile Include="Controllers\CasAccountController.cs" />
     <Compile Include="DefaultSettingsUpdater.cs" />
     <Compile Include="Filters\CasWebApiActionFilter.cs" />

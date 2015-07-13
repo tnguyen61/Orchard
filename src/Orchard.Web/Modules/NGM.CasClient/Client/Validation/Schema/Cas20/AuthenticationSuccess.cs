@@ -19,6 +19,7 @@
 
 #pragma warning disable 1591
 
+using NGM.CasClient.Client.Security;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -26,34 +27,27 @@ using System.Xml.Serialization;
 
 namespace NGM.CasClient.Client.Validation.Schema.Cas20
 {
-    [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "http://www.yale.edu/tp/cas")]
+    [Serializable]
     public class AuthenticationSuccess
     {
-        internal AuthenticationSuccess() { }
-
         [XmlElement("user")]
-        public string User
-        {
-            get;
-            set;
-        }
+        public string User { get; set; }
 
         [XmlElement("proxyGrantingTicket")]
-        public string ProxyGrantingTicket
-        {
-            get;
-            set;
-        }
+        public string ProxyGrantingTicket { get; set; }
 
-        [XmlArray("proxies")]
         [XmlArrayItem("proxy", IsNullable = false)]
-        public string[] Proxies
+        [XmlArray("proxies")]
+        public string[] Proxies { get; set; }
+
+        [XmlElement("attributes", typeof(maxAttributes))]
+        public maxAttributes attributes { get; set; }
+
+        internal AuthenticationSuccess()
         {
-            get;
-            set;
         }
     }
 }

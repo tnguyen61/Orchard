@@ -98,7 +98,7 @@ namespace NGM.CasClient.Client.Validation.TicketValidator {
                     return new CasPrincipal(new Assertion(authSuccessResponse.User), proxyGrantingTicketIou, authSuccessResponse.Proxies);
                 }
                 else {
-                    return new CasPrincipal(new Assertion(authSuccessResponse.User), proxyGrantingTicketIou);
+                    return new CasPrincipal(new Assertion(authSuccessResponse.User), proxyGrantingTicketIou, null, authSuccessResponse.attributes);
                 }
             }
 
