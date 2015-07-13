@@ -1,4 +1,3 @@
-
 @{
     Script.Require("ShapesBase");
     Script.Include("bootstrap.min.js").AtHead();
@@ -110,8 +109,11 @@
                                     <ul class="nav navbar-nav navbar-right">
                                         @if (Request.IsAuthenticated)
                                         {
+                                            
+                                            var Claims = new List<System.Security.Claims.Claim>((User.Identity as System.Security.Principal.GenericIdentity).Claims);
+                                            
                                             <li>
-                                                <a href="~/Admin/">@(User.Identity.Name)</a>
+                                                <a href="~/Admin/">@(Claims[1].Value)</a>
                                             </li>
                                             <li>
                                                 <a href="~/Users/Account/Logoff">Log Off</a>

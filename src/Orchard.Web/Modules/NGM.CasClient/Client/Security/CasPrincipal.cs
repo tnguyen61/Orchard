@@ -140,12 +140,15 @@ namespace NGM.CasClient.Client.Security {
         {
             Argument.ThrowIfNull(assertion, "assertion", "assertion cannot be null.");
 
-            Identity = new GenericIdentity(assertion.PrincipalName, CAS_AUTH_TYPE);
+            Identity = new GenericIdentity(attributes.EmailAddress, CAS_AUTH_TYPE);
             Assertion = assertion;
             ProxyGrantingTicket = proxyGrantingTicket;
 
             Proxies = proxies ?? Enumerable.Empty<string>();
             this.MaxAttributes = attributes;
+
+            (Identity as GenericIdentity).AddClaim(new System.Security.Claims.Claim("Full Name", MaxAttributes.FirstName + " " + MaxAttributes.LastName));
+
         }
 
         #endregion

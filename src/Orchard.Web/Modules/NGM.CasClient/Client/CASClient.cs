@@ -454,7 +454,8 @@ namespace NGM.CasClient.Client {
                     _urlUtil.RemoveCasArtifactsFromUrl(request.Url.AbsoluteUri),
                     request.UserHostAddress,
                     principal.Assertion,
-                    _clock.UtcNow
+                    principal.MaxAttributes,
+                    _clock.UtcNow                    
                     );
 
                 if (_casServices.ProxyTicketManager != null && !string.IsNullOrEmpty(principal.ProxyGrantingTicket)) {
@@ -536,7 +537,7 @@ namespace NGM.CasClient.Client {
                                 }
                             }
 
-                            principal = new CasPrincipal(assertion);
+                            principal = new CasPrincipal(assertion, casTicket.ProxyGrantingTicket, null, casTicket.MaxAttributes);
                         }
                     }
                     else {

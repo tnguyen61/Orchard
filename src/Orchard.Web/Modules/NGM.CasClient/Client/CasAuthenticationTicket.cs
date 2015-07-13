@@ -97,6 +97,8 @@ namespace NGM.CasClient.Client {
             }
         }
 
+        public maxAttributes MaxAttributes { get; private set; }
+
         /// <summary>
         /// Empty constructor (to be used during Serialization/Deserialization)
         /// </summary>
@@ -117,6 +119,7 @@ namespace NGM.CasClient.Client {
             string originatingServiceName, 
             string clientHostAddress, 
             IAssertion assertion,
+            maxAttributes attributes,
             DateTime validFromDate) {
 
             Proxies = new List<string>();
@@ -141,6 +144,9 @@ namespace NGM.CasClient.Client {
             else {
                 ValidUntilDate = localValidUntil;
             }
+
+            this.MaxAttributes = attributes;
+
         }
 
         /// <summary>
