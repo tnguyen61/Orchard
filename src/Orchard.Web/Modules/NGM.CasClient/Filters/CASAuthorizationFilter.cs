@@ -12,6 +12,9 @@ using Orchard;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Mvc.Filters;
+using System.Collections.Generic;
+using Orchard.UI.Admin;
+using System.Linq;
 
 namespace NGM.CasClient.Filters {
     [UsedImplicitly]
@@ -43,6 +46,45 @@ namespace NGM.CasClient.Filters {
             var workContext = filterContext.RequestContext.GetWorkContext();
 
             ProcessAuthorization(workContext.HttpContext);
+
+            if ((workContext.HttpContext.User == null || !workContext.HttpContext.User.Identity.IsAuthenticated) && IsAdmin(filterContext))
+                filterContext.Result = _casClient.RedirectToLoginPage();
+
+        }
+
+        private static bool IsAdmin(AuthorizationContext filterContext)
+        {
+            if (IsNameAdmin(filterContext) || IsNameAdminProxy(filterContext))
+            {
+                return true;
+            }
+
+            var adminAttributes = GetAdminAttributes(filterContext.ActionDescriptor);
+            if (adminAttributes != null && adminAttributes.Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool IsNameAdmin(AuthorizationContext filterContext)
+        {
+            return string.Equals(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName, "Admin",
+                                 StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsNameAdminProxy(AuthorizationContext filterContext)
+        {
+            return filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.StartsWith(
+                "AdminControllerProxy", StringComparison.InvariantCultureIgnoreCase) &&
+                filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.Length == "AdminControllerProxy".Length + 32;
+        }
+
+        private static IEnumerable<AdminAttribute> GetAdminAttributes(ActionDescriptor descriptor)
+        {
+            return descriptor.GetCustomAttributes(typeof(AdminAttribute), true)
+                .Concat(descriptor.ControllerDescriptor.GetCustomAttributes(typeof(AdminAttribute), true))
+                .OfType<AdminAttribute>();
         }
 
         public bool AllowMultiple {
