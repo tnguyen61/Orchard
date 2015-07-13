@@ -35,7 +35,7 @@ namespace NGM.CasClient.Models {
 
            
 
-            using (var db = new WCToolkitEntities()) {
+            using (var db = new MemberEntities()) {
                 var username = user.Email.ToLowerInvariant();
 
                 user.Roles = db.aspnet_Users.Where(u => u.LoweredUserName == username)

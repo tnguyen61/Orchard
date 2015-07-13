@@ -81,12 +81,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aspnet_Roles.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_Users.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="aspnet_Roles.cs" />
+    <Compile Include="aspnet_Users.cs" />
     <Compile Include="Client\CasAuthenticationTicket.cs" />
     <Compile Include="Client\CASClient.cs" />
     <Compile Include="Client\Configuration\CasConfigurationException.cs" />
@@ -105,22 +101,8 @@
     <Compile Include="Filters\ICASActionFilter.cs" />
     <Compile Include="Filters\IHttpAuthorizationFilter.cs" />
     <Compile Include="Filters\WebApi\WebApiActionFilter.cs" />
+    <Compile Include="MemberEntities.cs" />
     <Compile Include="MissingSettingsBanner.cs" />
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Members.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Members.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\CASUser.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Services\DefaultCasIdentityRetriever.cs" />
@@ -342,27 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Members.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Members.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Members.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Members.edmx.diagram">
-      <DependentUpon>Members.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Members.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User.cshtml" />

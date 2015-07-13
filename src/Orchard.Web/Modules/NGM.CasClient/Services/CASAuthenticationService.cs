@@ -146,7 +146,11 @@ namespace NGM.CasClient.Services {
                 return _signedInUser = _contentManager.Get(userId).As<IUser>();
             }
             else if (httpContext.User is CasPrincipal) {
-                return CASUser.Get((CasPrincipal)httpContext.User);
+
+                var User = CASUser.Get((CasPrincipal)httpContext.User);
+                User.ContentManager = _contentManager;
+
+                return User;
             }
             return null;
         }
