@@ -1,0 +1,388 @@
+﻿body {
+  padding: 10px;
+  max-width: 1650px;
+  margin: 0 auto;
+}
+.wctk-logo {
+  width: 350px;
+  float: left;
+}
+.wctk-logo-row {
+  width: calc(100% - 365px);
+  float: right;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content-container .body-content {
+  padding: 10px;
+  margin-bottom: 5ex;
+  background: #fff;
+}
+.body-content-container footer p {
+  background-image: linear-gradient(#c9c9c9, #ffffff 30%);
+  background-color: #c9c9c9;
+  padding: 10px;
+  margin: 0;
+  color: #3f4c6b;
+  text-align: right;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+  max-width: 280px;
+}
+.header {
+  position: relative;
+  border-top: solid #fff 1px;
+  padding: 6px 8px 4px 8px;
+  color: #fff;
+  background-image: linear-gradient(#6583a9, #3c516c);
+  background-color: #3c516c;
+  margin-top: 12px;
+}
+.header::before {
+  content: " ";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  display: block;
+  background-color: #5a000a;
+}
+h2 {
+  font-size: 1.5em;
+  color: #960013;
+  padding: 0px;
+  padding-bottom: 5px;
+  margin-top: 0px;
+}
+.sub-header {
+  border-bottom: 2px solid #333;
+}
+h3 {
+  font-size: 1.25em;
+  color: #454859;
+}
+.controls-left {
+  margin-right: 6px;
+}
+.controls-right {
+  margin-left: 6px;
+}
+.controls-above {
+  margin-bottom: 6px;
+}
+.navbar-default {
+  background-image: linear-gradient(#c00015, #5a000a);
+  background-color: #5a000a;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background-image: linear-gradient(#da0018, #74000d);
+  background-color: #74000d;
+}
+.navbar-default.navbar-login {
+  border: none;
+  margin-bottom: 10px;
+  background: #fff;
+}
+.navbar-default.navbar-login .navbar-nav > li > a {
+  color: #333;
+}
+.navbar-default.navbar-login .navbar-nav > .active > a,
+.navbar-default.navbar-login .navbar-nav > .active > a:hover,
+.navbar-default.navbar-login .navbar-nav > .active > a:focus,
+.navbar-default.navbar-login .navbar-nav > li > a:hover,
+.navbar-default.navbar-login .navbar-nav > li > a:focus {
+  color: #fff;
+}
+.navbar-default.navbar-login .dropdown-menu {
+  background-color: #fff;
+}
+.navbar-inverse {
+  background-image: linear-gradient(#6583a9, #3c516c);
+  background-color: #3c516c;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  background-image: linear-gradient(#a6b8ce, #4e6a8d);
+  background-color: #4e6a8d;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  background-image: linear-gradient(#b7c5d7, #57769d);
+  background-color: #57769d;
+}
+.navbar-inverse .dropdown-menu {
+  background-color: #3c516c;
+}
+.navbar-inverse .dropdown-menu > li > a {
+  color: #fff;
+}
+.navbar-inverse .dropdown-menu > li > a:hover,
+.navbar-inverse .dropdown-menu > li > a:focus {
+  background-color: #6583a9;
+}
+.dropdown-header {
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.row-search {
+  margin-bottom: 10px;
+}
+.row-search .form-control,
+.row-search .btn {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  height: 26px;
+}
+.btn.btn-primary {
+  background-image: linear-gradient(#8d0010, #5a000a);
+  background-color: #8d0010;
+}
+.btn.btn-primary:hover {
+  background-image: linear-gradient(#b7c5d7, #7590b2);
+  background-color: #b7c5d7;
+}
+.btn {
+  background-image: linear-gradient(#ffffff, #c9c9c9);
+  background-color: #fff;
+}
+.btn:hover {
+  background-image: linear-gradient(#e8ecf2, #7590b2);
+  background-color: #7590b2;
+}
+.resource-content {
+  padding-left: 20px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+.export-button {
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  margin: 3px;
+  float: right;
+}
+.export-button.excel {
+  background-image: url('images/CIDM/btn_excel.jpg');
+}
+.export-button.excel:hover {
+  background-image: url('images/CIDM/btn_excel_ovr.jpg');
+}
+.export-button.pdf {
+  background-image: url('images/CIDM/btn_pdf.jpg');
+}
+.export-button.pdf:hover {
+  background-image: url('images/CIDM/btn_pdf_ovr.jpg');
+}
+.side-nav p {
+  font-weight: bold;
+  display: block;
+}
+.side-nav ul {
+  display: block;
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 0;
+  margin-right: 10px;
+}
+.side-nav li {
+  height: 30px;
+  ddisplay: block;
+}
+.side-nav li.active > a {
+  text-decoration: none;
+  background-image: linear-gradient(#c7d2e0, #57769d);
+  background-color: #57769d;
+  color: #fff;
+}
+.side-nav li > a {
+  padding: 6px;
+  display: block;
+  border-radius: 4px;
+}
+.side-nav li > a:hover {
+  text-decoration: none;
+  background-image: linear-gradient(#e8ecf2, #7590b2);
+  background-color: #7590b2;
+  color: #fff;
+}
+#edit-teams-modal .team-members {
+  border-right: 4px #e9e9e9 solid;
+}
+#edit-teams-modal .modal-dialog {
+  width: calc(100% - 100px);
+}
+.upload-warning {
+  color: #fff;
+  background-color: rgba(236, 151, 31, 0.76);
+  padding: 10px;
+  display: table;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+.message {
+  color: #5cb85c;
+  border: 1px #5cb85c solid;
+  display: inline-block;
+  padding: 6px;
+  margin: 20px;
+  border-radius: 5px;
+}
+#projects .popover {
+  max-width: 600px;
+}
+#projects table.team-member-popover {
+  width: 500px;
+}
+#projects table.team-member-popover .role,
+#projects table.team-member-popover .org {
+  width: 120px;
+}
+#projects table.team-member-popover .name {
+  width: 480px;
+}
+#projects .project-summary-popover {
+  overflow: auto;
+  height: 300px;
+}
+#projects .project-summary-popover .description {
+  white-space: pre-wrap;
+}
+.role {
+  text-transform: capitalize;
+}
+#checklist-landing #left {
+  width: 70%;
+  float: left;
+  border-right: dotted 1px #999999;
+  padding-right: 10px;
+}
+#checklist-landing #right {
+  width: 25%;
+  float: left;
+}
+#checklist-landing a {
+  text-decoration: underline;
+}
+#checklist-landing .edit {
+  padding-left: 64px;
+}
+#checklist-landing .steps span {
+  font-size: 13px;
+  font-weight: normal;
+  color: #444444;
+}
+#checklist-view table .selected {
+  background-color: #960013;
+  color: #fff;
+}
+#checklist-view table .selected a {
+  color: #fff;
+}
+#checklist-print .row {
+  margin-bottom: 0.6em;
+  border-bottom: 1px dotted #333;
+}
+#checklist-print .check-area {
+  font-size: large;
+}
+#strat-display-area h4 {
+  color: #960013;
+}
+#strat-display-area .info-box {
+  float: left;
+  border-right: 1px solid #333;
+  margin: 6px 16px;
+  padding-right: 16px;
+  text-align: center;
+}
+#strat-display-area .reference .reference-body {
+  border-bottom: 1px solid #333;
+  padding-bottom: 24px;
+}
+#strat-display-area .reference p {
+  padding-left: 12px;
+}
+#strat-display-area .image-section img {
+  border: 2px solid #960013;
+  margin: 1px;
+}
+#strat-display-area .comments blockquote p {
+  font-size: smaller;
+  font-style: italic;
+}
+#strat-display-area .printable h4 {
+  color: black;
+}
+#strat-display-area .printable .image-section img {
+  border: none;
+  max-width: 100%;
+}
+.page-break {
+  page-break-after: always;
+}
+.page-break :last-of-type {
+  page-break-after: avoid;
+}
+.page-break-all {
+  page-break-after: always;
+}
+table.table-scrolling-body {
+  width: 100%;
+}
+table.table-scrolling-body thead {
+  display: block;
+}
+table.table-scrolling-body tbody {
+  height: 200px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+div.legacy-ie-scrolling-table {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 200px;
+  display: block;
+}
+div.legacy-ie-scrolling-table tbody {
+  height: auto;
+}
+acronym {
+  border-bottom: 1px dotted #000;
+}
+.primary {
+  background: #5a000a;
+}
+.primary-light {
+  background: #c00015;
+}
+.secondary {
+  background: #3c516c;
+}
+.secondary-light {
+  background: #6583a9;
+}
+.msg {
+  background: #EEEEEE;
+  color: #264409;
+  padding: .5em;
+  margin-bottom: 1em;
+}
+/*# sourceMappingURL=Site.css.map */

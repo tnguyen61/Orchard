@@ -1,0 +1,138 @@
+
+@{
+    Script.Require("ShapesBase");
+    Script.Include("bootstrap.min.js").AtHead();
+    Script.Include("jquery-2.1.4.min.js").AtHead();
+    Style.Include("bootstrap/bootstrap.css").AtHead();
+    Style.Include("site.css").AtHead();
+    
+}
+    @*<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link rel="Stylesheet" type="text/css" href="~/Css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="~/Css/nika-slider.css">
+
+    <link href="/Css/nivoslider/nivo-slider.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/Scripts/jquery.easing.1.3.js"></script>
+    <script src="/Scripts/jquery.cycle.all.min.js"></script>
+    <script src="/scripts/nika-slider.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-6983436-6']);
+		_gaq.push(['_trackPageview']);
+
+		(function()
+		{
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+    </script>*@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+    function runSearch() {
+        window.location = 'Searchq?culture=en-US&q=' + encodeURIComponent($('#main-search').val());
+    }
+    $(function () {
+        $('#main-search').keydown(function (event) {
+            if (event.keyCode == 13) {
+                runSearch();
+            }
+        });
+
+        $('#main-search-button').click(function (event) {
+            runSearch();
+        });
+    });
+</script>
+    <div class="container">
+        <div class="wctk-logo">
+            <a href='/'>
+                <img src="~/Themes/wctk/Styles/images/CIDM/logo_lrg.jpg" />
+            </a>
+        </div>
+        <div class="row wctk-logo-row">
+            <div class="col-md-12">
+                <div class="row row-search">
+                    <div class="col-xs-offset-9 col-xs-3">
+                        <div class="form-horizontal">
+                            <div class="form-group pull-right">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="main-search" placeholder="Search for..." onsubmit="">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" id="main-search-button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="main-nav" class="navbar navbar-inverse  hidden-print">
+                            <div class="container-fluid">
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li id="nav-home"><a href="/">Home</a></li>
+                                        <li id="nav-knowledge-center" class="dropdown">
+                                            <a href="/knowledge-center/" role="button" aria-expanded="false">Knowledge Center<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="https://wcftoolkitdev.nika-ae.com/repository">Resources/Documents</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="nav-world-class-toolkit" class="dropdown">
+                                            <a href="/world-class-toolkit/" class="dropdown-toggle" role="button" aria-expanded="false">World-Class ToolKit<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="/world-class-toolkit/case-studies/">Case Studies</a></li>
+                                                <li><a href="/world-class-toolkit/mhs-facilities-design-guidelines-criteria-policy/">Design Guidelines, Criteria &amp; Policy</a></li>
+                                                <li><a href="/world-class-toolkit/post-occupancy-evaluation-overview/">Post-Occupancy Evaluation</a></li>
+                                                <li><a href="https://wcftoolkitdev.nika-ae.com/project">Project Tool</a></li>
+                                                <li><a href="https://wcftoolkitdev.nika-ae.com/checklist">World-Class Checklist</a></li>
+                                                <li><a href="/world-class-toolkit/world-class-checklist-reports/">World-Class Checklist Reports</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="nav-executive-dashboard"><a href="/home/executive-dashboard/">Executive Dashboard</a></li>
+                                        <li id="nav-contact-us" class="dropdown">
+                                            <a href="/contact-us/">Contact Us<span class="caret"></span></a>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                <li><a href="/contact-us/frequently-asked-questions/">Frequently Asked Questions</a></li>
+                                                <li><a href="/contact-us/website-notices-policies-disclaimers/">Website Notices, Policies &amp; Disclaimers</a></li>
+                                                <li><a href="/contact-us/how-to-use-this-site/">How To Use This Site</a></li>
+                                                <li><a href="/contact-us/support-availability/">Support Availability</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @Display(Model.Navigation)
+    </div>
+    <div class="container body-content-container">
+        <div class="body-content" style="position:relative">
+            @Display(Model.Content)
+        </div>
+        <footer>
+            <p>
+                <a href="/contact-us/website-notices-policies-disclaimers/">Website Notices, Policies &amp; Disclaimers</a> |
+                <a href="/contact-us/website-notices-policies-disclaimers/document-posting-restrictions/">Document Posting Restrictions</a> |
+                <a href="http://health.mil/Military-Health-Topics/Privacy-and-Civil-Liberties">FOIA</a> |
+                <a href="/sitemap/">
+                    Site Map
+                </a> | <a href="/contact-us/">Contact Us</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

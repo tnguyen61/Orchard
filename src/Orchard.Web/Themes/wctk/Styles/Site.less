@@ -1,0 +1,509 @@
+﻿@import "dhhq-variables.less";
+
+body {
+    padding: 10px;
+    max-width: 1650px;
+    margin: 0 auto;
+}
+
+.wctk-logo {
+    width: 350px;
+    float: left;
+
+    &-row {
+        width: calc(~"100% - 365px");
+        float: right;
+    }
+}
+/* Set padding to keep content from hitting the edges */
+.body-content-container {
+
+    .body-content {
+        padding: 10px;
+        margin-bottom: 5ex;
+        background: #fff;
+    }
+
+    footer p {
+        background-image: linear-gradient(@dhhq-gray, #fff 30%);
+        background-color: @dhhq-gray;
+        padding: 10px;
+        margin: 0;
+        color: #3f4c6b;
+        text-align: right;
+    }
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.header {
+    &::before {
+        content: " ";
+        position: absolute;
+        top: -6px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        display: block;
+        background-color: @dhhq-primary;
+    }
+
+    position: relative;
+    border-top: solid #fff 1px;
+    padding: 6px 8px 4px 8px;
+    color: #fff;
+    background-image: linear-gradient(@dhhq-secondary-light, @dhhq-secondary);
+    background-color: @dhhq-secondary;
+    margin-top: 12px;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #960013;
+    padding: 0px;
+    padding-bottom: 5px;
+    margin-top: 0px;
+}
+
+.sub-header {
+    border-bottom: 2px solid #333;
+}
+
+h3 {
+    font-size: 1.25em;
+    color: #454859;
+}
+
+.controls {
+    &-left {
+        margin-right: 6px;
+    }
+
+    &-right {
+        margin-left: 6px;
+    }
+
+    &-above {
+        margin-bottom: 6px;
+    }
+}
+
+.navbar-default {
+    background-image: linear-gradient( @dhhq-primary-light, @dhhq-primary);
+    background-color: @dhhq-primary;
+
+    & .navbar-nav > .active > a,
+    & .navbar-nav > .active > a:hover,
+    & .navbar-nav > .active > a:focus,
+    & .navbar-nav > li > a:hover,
+    & .navbar-nav > li > a:focus {
+        background-image: linear-gradient(lighten(@dhhq-primary, 25%), lighten(@dhhq-primary, 5%));
+        background-color: lighten(@dhhq-primary, 5%);
+    }
+
+    &.navbar-login {
+        border: none;
+        margin-bottom: 10px;
+        background: #fff;
+
+        & .navbar-nav > li > a {
+            color: #333;
+        }
+
+        & .navbar-nav > .active > a,
+        & .navbar-nav > .active > a:hover,
+        & .navbar-nav > .active > a:focus,
+        & .navbar-nav > li > a:hover,
+        & .navbar-nav > li > a:focus {
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            background-color: #fff;
+        }
+    }
+}
+
+.navbar-inverse {
+    background-image: linear-gradient(@dhhq-secondary-light, @dhhq-secondary);
+    background-color: @dhhq-secondary;
+
+    & .navbar-nav > .active > a,
+    & .navbar-nav > .active > a:hover,
+    & .navbar-nav > .active > a:focus {
+        background-image: linear-gradient(lighten(@dhhq-secondary, 40%), lighten(@dhhq-secondary, 10%));
+        background-color: lighten(@dhhq-secondary, 10%);
+    }
+
+    & .navbar-nav > li > a:hover, & .navbar-nav > li > a:focus {
+        background-image: linear-gradient(lighten(@dhhq-secondary, 45%), lighten(@dhhq-secondary, 15%));
+        background-color: lighten(@dhhq-secondary, 15%);
+    }
+
+    .dropdown-menu {
+        background-color: @dhhq-secondary;
+
+        & > li > a {
+            color: #fff;
+        }
+
+        & > li > a:hover, & > li > a:focus {
+            background-color: @dhhq-secondary-light;
+        }
+    }
+}
+
+.dropdown-header {
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.row-search {
+    margin-bottom: 10px;
+
+    .form-control, .btn {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        height: 26px;
+    }
+}
+
+.btn.btn-primary {
+    background-image: linear-gradient(lighten(@dhhq-primary, 10%), @dhhq-primary);
+    background-color: lighten(@dhhq-primary, 10%);
+
+    &:hover {
+        background-image: linear-gradient(lighten(@dhhq-secondary, 45%), lighten(@dhhq-secondary, 25%));
+        background-color: lighten(@dhhq-secondary, 45%);
+    }
+}
+
+.btn {
+    background-image: linear-gradient(#fff, @dhhq-gray);
+    background-color: #fff;
+
+    &:hover {
+        background-image: linear-gradient(lighten(@dhhq-secondary, 60%), lighten(@dhhq-secondary, 25%));
+        background-color: lighten(@dhhq-secondary, 25%);
+    }
+}
+
+.resource-content {
+    padding-left: 20px;
+}
+
+// Make Dropdowns open on hover
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+}
+
+.export-button {
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+    margin: 3px;
+    float: right;
+
+    &.excel {
+        background-image: url('images/CIDM/btn_excel.jpg');
+
+        &:hover {
+            background-image: url('images/CIDM/btn_excel_ovr.jpg');
+        }
+    }
+
+    &.pdf {
+        background-image: url('images/CIDM/btn_pdf.jpg');
+
+        &:hover {
+            background-image: url('images/CIDM/btn_pdf_ovr.jpg');
+        }
+    }
+}
+
+.side-nav {
+    p {
+        font-weight: bold;
+        display: block;
+    }
+
+    ul {
+        display: block;
+        list-style-type: none;
+        padding-left: 20px;
+        margin: 0;
+        margin-right: 10px;
+    }
+
+    li {
+        height: 30px;
+        d display: block;
+    }
+
+    li.active > a {
+        text-decoration: none;
+        background-image: linear-gradient(lighten(@dhhq-secondary, 50%), lighten(@dhhq-secondary, 15%));
+        background-color: lighten(@dhhq-secondary, 15%);
+        color: #fff;
+    }
+
+    li > a {
+        padding: 6px;
+        display: block;
+        border-radius: 4px;
+
+        &:hover {
+            text-decoration: none;
+            background-image: linear-gradient(lighten(@dhhq-secondary, 60%), lighten(@dhhq-secondary, 25%));
+            background-color: lighten(@dhhq-secondary, 25%);
+            color: #fff;
+        }
+    }
+}
+
+#edit-teams-modal {
+
+    .team-members {
+        border-right: 4px #e9e9e9 solid;
+    }
+
+    .modal-dialog {
+        width: calc(~"100% - 100px");
+    }
+}
+
+.upload-warning {
+    color: #fff;
+    background-color: rgba(236, 151, 31, 0.76);
+    padding: 10px;
+    display: table;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+
+.message {
+    color: #5cb85c;
+    border: 1px #5cb85c solid;
+    display: inline-block;
+    padding: 6px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+#projects {
+    .popover {
+        max-width: 600px;
+    }
+
+    table.team-member-popover {
+        width: 500px;
+
+        .role, .org {
+            width: 120px;
+        }
+
+        .name {
+            width: 480px;
+        }
+    }
+
+    .project-summary-popover {
+        overflow: auto;
+        height: 300px;
+
+        .description {
+            white-space: pre-wrap;
+        }
+    }
+}
+
+.role {
+    text-transform: capitalize;
+}
+
+#checklist-landing {
+    #left {
+        width: 70%;
+        float: left;
+        border-right: dotted 1px #999999;
+        padding-right: 10px;
+    }
+
+    #right {
+        width: 25%;
+        float: left;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .edit {
+        padding-left: 64px;
+    }
+
+    .steps {
+        span {
+            font-size: 13px;
+            font-weight: normal;
+            color: #444444;
+        }
+    }
+}
+
+#checklist-view {
+    table {
+        .selected {
+            background-color: #960013;
+            color: #fff;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
+}
+
+#checklist-print {
+    .row {
+        margin-bottom: 0.6em;
+        border-bottom: 1px dotted #333;
+    }
+
+    .check-area {
+        font-size: large;
+    }
+}
+
+#strat-display-area {
+    h4 {
+        color: #960013;
+    }
+
+    .info-box {
+        float: left;
+        border-right: 1px solid #333;
+        margin: 6px 16px;
+        padding-right: 16px;
+        text-align: center;
+    }
+
+    .reference {
+        .reference-body {
+            border-bottom: 1px solid #333;
+            padding-bottom: 24px;
+        }
+
+        p {
+            padding-left: 12px;
+        }
+    }
+
+    .image-section {
+        img {
+            border: 2px solid #960013;
+            margin: 1px;
+        }
+    }
+
+    .comments {
+        blockquote p {
+            font-size: smaller;
+            font-style: italic;
+        }
+    }
+
+    .printable {
+        h4 {
+            color: black;
+        }
+
+        .image-section {
+            img {
+                border: none;
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.page-break {
+    page-break-after: always;
+
+    :last-of-type {
+        page-break-after: avoid;
+    }
+}
+
+
+.page-break-all {
+    page-break-after: always;
+}
+
+table.table-scrolling-body {
+    width: 100%;
+
+    thead {
+        display: block;
+    }
+
+    tbody {
+        height: 200px;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+div.legacy-ie-scrolling-table {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 200px;
+    display: block;
+
+    tbody {
+        height: auto;
+    }
+}
+
+acronym {
+    border-bottom: 1px dotted #000;
+}
+
+
+.primary {
+    background: @dhhq-primary;
+
+    &-light {
+        background: @dhhq-primary-light;
+    }
+}
+
+.secondary {
+    background: @dhhq-secondary;
+
+    &-light {
+        background: @dhhq-secondary-light;
+    }
+}
+
+.msg {
+    background: #EEEEEE;
+    color: #264409;
+    padding: .5em;
+    margin-bottom: 1em;
+}
