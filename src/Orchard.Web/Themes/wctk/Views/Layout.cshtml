@@ -107,7 +107,7 @@
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        @if (Request.IsAuthenticated)
+                                        @if (Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity)
                                         {
                                             
                                             var Claims = new List<System.Security.Claims.Claim>((User.Identity as System.Security.Principal.GenericIdentity).Claims);
@@ -137,6 +137,7 @@
         </div>
     </div>
     <div class="row">
+
         @Display(Model.Navigation)
     </div>
     <div class="container body-content-container">

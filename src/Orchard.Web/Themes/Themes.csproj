@@ -304,6 +304,11 @@
     <Content Include="wctk\Views\Layout.cshtml" />
     <Content Include="wctk\Web.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="wctk\Views\Menu.cshtml" />
+    <Content Include="wctk\Views\MenuItem.cshtml" />
+    <Content Include="wctk\Views\MenuItemLink.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
