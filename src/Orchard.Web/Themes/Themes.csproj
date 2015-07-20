@@ -99,6 +99,7 @@
     <Content Include="TheThemeMachine\ThemeZonePreview.png" />
     <Content Include="wctk\Scripts\bootstrap.min.js" />
     <Content Include="wctk\Scripts\jquery-2.1.4.min.js" />
+    <Content Include="wctk\Scripts\nika-slider.css" />
     <Content Include="wctk\Scripts\nika-slider.js" />
     <Content Include="wctk\Styles\bootstrap-datepicker.css" />
     <Content Include="wctk\Styles\bootstrap-datepicker.min.css" />
