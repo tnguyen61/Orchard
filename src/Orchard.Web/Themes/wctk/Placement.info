@@ -15,6 +15,7 @@
   </Match>
 -->
     <Match Path="/">
+        <Place Parts_Common_Metadata="-"/>
         <Place Parts_Title="-"/>
     </Match>
 </Placement>
