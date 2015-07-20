@@ -17,7 +17,6 @@
 	position: relative;
 	margin: 0; /*make the image slider center-aligned */
 	margin-right: 2em;
-    box-shadow: 0px 1px 5px #999999;
 }
 
 #slider 
