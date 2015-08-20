@@ -122,9 +122,16 @@
                                     <ul class="nav navbar-nav navbar-right">
                                         @if (Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity)
                                         {
-                                            
+
                                             var Claims = new List<System.Security.Claims.Claim>((User.Identity as System.Security.Principal.GenericIdentity).Claims);
-                                            
+
+                                            if (Claims[2].Value == "True")
+                                            {
+                                                <li>
+                                                    <a href="https://facilities.health.mil/Admin/">Admin</a>
+                                                </li>
+                                            }
+
                                             <li>
                                                 <a href="https://facilities.health.mil/Account">@(Claims[1].Value)</a>
                                             </li>

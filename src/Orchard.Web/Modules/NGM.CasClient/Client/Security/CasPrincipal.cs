@@ -147,7 +147,17 @@ namespace NGM.CasClient.Client.Security {
             Proxies = proxies ?? Enumerable.Empty<string>();
             this.MaxAttributes = attributes;
 
+            bool IsAdmin; 
+
+            using (var db = new MemberEntities())
+            {
+                var username = MaxAttributes.EmailAddress.ToLowerInvariant();
+
+                IsAdmin = db.aspnet_Users.Where(u => u.LoweredUserName == username).SelectMany(x => x.aspnet_Roles.Select(y => y.RoleName)).Any(x => x == "Administrator");
+            }
+
             (Identity as GenericIdentity).AddClaim(new System.Security.Claims.Claim("Full Name", MaxAttributes.FirstName + " " + MaxAttributes.LastName));
+            (Identity as GenericIdentity).AddClaim(new System.Security.Claims.Claim("IsAdmin", IsAdmin.ToString()));
 
         }
 
