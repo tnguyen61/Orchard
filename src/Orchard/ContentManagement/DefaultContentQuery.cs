@@ -188,8 +188,9 @@ namespace Orchard.ContentManagement {
                 criteria = criteria.SetMaxResults(count);
             }
 
-            return criteria
-                .List<ContentItemVersionRecord>()
+            var records = criteria.List<ContentItemVersionRecord>();
+
+            return records
                 .Select(x => ContentManager.Get(x.ContentItemRecord.Id, _versionOptions != null && _versionOptions.IsDraftRequired ? _versionOptions : VersionOptions.VersionRecord(x.Id)))
                 .ToReadOnlyCollection();
         }

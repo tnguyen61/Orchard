@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\Sites.config" />
+    <None Include="Properties\PublishProfiles\Desktop.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

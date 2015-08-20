@@ -1,55 +1,67 @@
 ﻿using System.Net;
 using Everest;
 using Everest.Content;
+using System.IO;
+using System.Text;
 
 namespace NGM.CasClient.Client.Utils {
-    /// <summary>
-    /// A helper utility class to facilitate outbound HTTP GET and POST request
-    /// </summary>
-    /// <author>Scott Holodak</author>
-    internal static class HttpUtil {
-        /// <summary>
-        /// Executes an HTTP GET request against the Url specified, returning the 
-        /// entire response body in string form.
-        /// </summary>
-        /// <param name="url">The URL to request</param>
-        /// <param name="requireHttp200">
-        /// Boolean indicating whether or not to return 
-        /// null if the repsonse status code is not 200 (OK).
-        /// </param>
-        /// <returns>
-        /// The response body or null if the response status is required to 
-        /// be 200 (OK) but is not
-        /// </returns>
-        internal static string PerformHttpGet(string url, bool requireHttp200) {
-            var restClient = new RestClient();
-            var response = restClient.Get(url);
 
-
-            return response.Body;
+    internal static class HttpUtil
+    {
+        internal static string PerformHttpGet(string url, bool requireHttp200)
+        {
+            string str = (string)null;
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.Headers.Add("Cookie", "SeenSniWarning=1");
+            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+            {
+                if (!requireHttp200 || httpWebResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    using (Stream responseStream = httpWebResponse.GetResponseStream())
+                    {
+                        if (responseStream != null)
+                        {
+                            using (StreamReader streamReader = new StreamReader(responseStream))
+                                str = streamReader.ReadToEnd();
+                        }
+                    }
+                }
+            }
+            return str;
         }
 
-        /// <summary>
-        /// Executes an HTTP POST against the Url specified with the supplied post data, 
-        /// returning the entire response body in string form.
-        /// </summary>
-        /// <param name="url">The URL to post to</param>
-        /// <param name="postData">The x-www-form-urlencoded data to post to the URL</param>
-        /// <param name="requireHttp200">
-        /// Boolean indicating whether or not to return 
-        /// null if the repsonse status code is not 200 (OK).
-        /// </param>
-        /// <returns>
-        /// The response body or null if the response status is required to 
-        /// be 200 (OK) but is not
-        /// </returns>
-        internal static string PerformHttpPost(string url, string postData, bool requireHttp200) {
-            var restClient = new RestClient();
-            BodyContent content = new WwwFormUrlEncodedContent(postData);
+        internal static string PerformHttpPost(string url, string postData, bool requireHttp200)
+        {
+            HttpStatusCode statusCode;
+            WebHeaderCollection headers;
+            return HttpUtil.PerformHttpPost(url, postData, requireHttp200, out statusCode, out headers);
+        }
 
-            var response = restClient.Post(url, content);
-
-            return response.Body;
+        internal static string PerformHttpPost(string url, string postData, bool requireHttp200, out HttpStatusCode statusCode, out WebHeaderCollection headers)
+        {
+            string str = (string)null;
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add("Cookie", "SeenSniWarning=1");
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+            httpWebRequest.ContentLength = (long)Encoding.UTF8.GetByteCount(postData);
+            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                streamWriter.Write(postData);
+            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+            {
+                headers = httpWebResponse.Headers;
+                statusCode = httpWebResponse.StatusCode;
+                using (Stream responseStream = httpWebResponse.GetResponseStream())
+                {
+                    if (responseStream != null)
+                    {
+                        using (StreamReader streamReader = new StreamReader(responseStream))
+                            str = streamReader.ReadToEnd();
+                    }
+                }
+            }
+            return str;
         }
     }
+
 }

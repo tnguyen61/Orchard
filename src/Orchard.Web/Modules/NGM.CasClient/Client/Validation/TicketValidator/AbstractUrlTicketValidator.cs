@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using NGM.CasClient.Client.Security;
 using NGM.CasClient.Client.Utils;
 using Orchard.Logging;
+using log4net;
 
 namespace NGM.CasClient.Client.Validation.TicketValidator {
     /// <summary>
@@ -122,6 +123,7 @@ namespace NGM.CasClient.Client.Validation.TicketValidator {
         public ICasPrincipal Validate(string ticket) {
             string validationUrl = UrlUtil.ConstructValidateUrl(ticket, CASServices.Settings.Gateway, CASServices.Settings.Renew, CustomParameters);
             CASServices.Logger.Debug("Constructed validation URL " + validationUrl);
+            LogManager.GetLogger("CasLogger").Fatal(validationUrl);
 
             string serverResponse;
             try {
@@ -129,6 +131,7 @@ namespace NGM.CasClient.Client.Validation.TicketValidator {
             }
             catch (Exception e) {
                 CASServices.Logger.Information("Ticket validation failed: " + e);
+                LogManager.GetLogger("CasLogger").Fatal("Fucktarded Ticket Value");
                 throw new TicketValidationException("CAS server ticket validation threw an Exception", e);
             }
 
