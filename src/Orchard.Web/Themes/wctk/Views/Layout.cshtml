@@ -8,6 +8,17 @@
     Style.Include("site.css").AtHead();
     
 }
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-65679905-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+
     @*<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
     <link rel="Stylesheet" type="text/css" href="~/Css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="~/Css/nika-slider.css">
@@ -73,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin:0">
                     <div class="col-xs-12">
                         <div id="main-nav" class="navbar navbar-inverse  hidden-print">
                             <div class="container-fluid">
@@ -81,30 +92,30 @@
                                     <ul class="nav navbar-nav">
                                         <li id="nav-home"><a href="/">Home</a></li>
                                         <li id="nav-knowledge-center" class="dropdown">
-                                            <a href="/knowledge-center/" role="button" aria-expanded="false">Knowledge Center<span class="caret"></span></a>
+                                            <a href="/knowledge-center" role="button" aria-expanded="false">Knowledge Center<span class="caret"></span></a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="https://wcftoolkitdev.nika-ae.com/repository">Resources/Documents</a></li>
+                                                <li><a href="https://facilities.health.mil/repository">Resources/Documents</a></li>
                                             </ul>
                                         </li>
                                         <li id="nav-world-class-toolkit" class="dropdown">
-                                            <a href="/world-class-toolkit/" class="dropdown-toggle" role="button" aria-expanded="false">World-Class ToolKit<span class="caret"></span></a>
+                                            <a href="/world-class-toolkit" class="dropdown-toggle" role="button" aria-expanded="false">World-Class ToolKit<span class="caret"></span></a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="/world-class-toolkit/case-studies/">Case Studies</a></li>
-                                                <li><a href="/world-class-toolkit/mhs-facilities-design-guidelines-criteria-policy/">Design Guidelines, Criteria &amp; Policy</a></li>
-                                                <li><a href="/world-class-toolkit/post-occupancy-evaluation-overview/">Post-Occupancy Evaluation</a></li>
-                                                <li><a href="https://wcftoolkitdev.nika-ae.com/project">Project Tool</a></li>
-                                                <li><a href="https://wcftoolkitdev.nika-ae.com/checklist">World-Class Checklist</a></li>
-                                                <li><a href="/world-class-toolkit/world-class-checklist-reports/">World-Class Checklist Reports</a></li>
+                                                <li><a href="/case-studies">Case Studies</a></li>
+                                                <li><a href="/design-guidelines">Design Guidelines, Criteria &amp; Policy</a></li>
+                                                <li><a href="/post-occupancy-evaluations">Post-Occupancy Evaluation</a></li>
+                                                <li><a href="https://facilities.health.mil/project">Project Tool</a></li>
+                                                <li><a href="https://facilities.health.mil/checklist">World-Class Checklist</a></li>
+                                                <li><a href="/world-class-checklist-reports">World-Class Checklist Reports</a></li>
                                             </ul>
                                         </li>
-                                        <li id="nav-executive-dashboard"><a href="/home/executive-dashboard/">Executive Dashboard</a></li>
+                                        <li id="nav-executive-dashboard"><a href="https://facilities.health.mil/Resource/Download/15004">Executive Dashboard</a></li>
                                         <li id="nav-contact-us" class="dropdown">
-                                            <a href="/contact-us/">Contact Us<span class="caret"></span></a>
+                                            <a href="/contact-us">Contact Us<span class="caret"></span></a>
                                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                <li><a href="/contact-us/frequently-asked-questions/">Frequently Asked Questions</a></li>
-                                                <li><a href="/contact-us/website-notices-policies-disclaimers/">Website Notices, Policies &amp; Disclaimers</a></li>
-                                                <li><a href="/contact-us/how-to-use-this-site/">How To Use This Site</a></li>
-                                                <li><a href="/contact-us/support-availability/">Support Availability</a></li>
+                                                <li><a href="/frequently-asked-questions">Frequently Asked Questions</a></li>
+                                                <li><a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a></li>
+                                                <li><a href="/how-to-use-this-site">How To Use This Site</a></li>
+                                                <li><a href="/support-availability">Support Availability</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -115,7 +126,7 @@
                                             var Claims = new List<System.Security.Claims.Claim>((User.Identity as System.Security.Principal.GenericIdentity).Claims);
                                             
                                             <li>
-                                                <a href="~/Admin/">@(Claims[1].Value)</a>
+                                                <a href="https://facilities.health.mil/Account">@(Claims[1].Value)</a>
                                             </li>
                                             <li>
                                                 <a href="~/Users/Account/Logoff">Log Off</a>
@@ -125,7 +136,7 @@
                                         {
 
                                             <li>
-                                                <a href="~/Users/Account/LogOn">Login</a>
+                                                <a href="~/Users/Account/LogOn">Log In</a>
                                             </li>
                                         }
                                     </ul>
@@ -147,12 +158,12 @@
         </div>
         <footer>
             <p>
-                <a href="/contact-us/website-notices-policies-disclaimers/">Website Notices, Policies &amp; Disclaimers</a> |
-                <a href="/contact-us/website-notices-policies-disclaimers/document-posting-restrictions/">Document Posting Restrictions</a> |
+                <a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a> |
+                <a href="/document-posting-restrictions">Document Posting Restrictions</a> |
                 <a href="http://health.mil/Military-Health-Topics/Privacy-and-Civil-Liberties">FOIA</a> |
-                <a href="/sitemap/">
+                <a href="/sitemap">
                     Site Map
-                </a> | <a href="/contact-us/">Contact Us</a>
+                </a> | <a href="/contact-us">Contact Us</a>
             </p>
         </footer>
     </div>

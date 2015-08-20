@@ -56,6 +56,9 @@ textarea {
   display: block;
   background-color: #5a000a;
 }
+h1 {
+ color: #960013;
+ }
 h2 {
   font-size: 1.5em;
   color: #960013;
@@ -385,4 +388,9 @@ acronym {
   padding: .5em;
   margin-bottom: 1em;
 }
+a {
+	color: #428bca;
+	text-decoration: none;
+}
+
 /*# sourceMappingURL=Site.css.map */
