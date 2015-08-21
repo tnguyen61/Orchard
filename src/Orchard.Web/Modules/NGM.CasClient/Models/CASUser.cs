@@ -38,10 +38,10 @@ namespace NGM.CasClient.Models {
             using (var db = new MemberEntities()) {
                 var username = user.Email.ToLowerInvariant();
 
-                user.Roles = db.aspnet_Users.Where(u => u.LoweredUserName == username)
-                                            .SelectMany(u => u.aspnet_Roles)
-                                            .Select(r => r.RoleName)
-                                            .ToList();
+                user.Roles = new List<string>();
+
+                if (db.aspnet_Users.Where(u => u.LoweredUserName == username).SelectMany(x => x.aspnet_Roles).Any(x => x.RoleName == "CMS"))
+                    user.Roles.Add("Administrator");
             }
 
             return user;
