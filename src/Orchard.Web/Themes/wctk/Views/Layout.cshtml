@@ -142,15 +142,19 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                                         <ul class="dropdown-menu multi-level">
                                             <li><a href="https://wcftoolkitdev.nika-ae.com/Admin">View Users</a></li>
-                                            <li><a href="https://wcftoolkitdev.nika-ae.com/AdminCompose">Compose Email</a></li>
+                                            <li><a href="https://wcftoolkitdev.nika-ae.com/Admin/Compose">Compose Email</a></li>
                                             <li><a href="https://wcftoolkitdev.nika-ae.com/Admin/SupportEmail">Update Email</a></li>
                                             <li><a href="https://wcftoolkitdev.nika-ae.com/Admin/Reindex">Rebuild Document Index</a></li>
-                                            @if (Claims[2].Value == "True")
+                                            @if (Claims[3].Value == "True")
                                             {
                                                 <li><a href="/admin">CMS Settings</a></li>
                                             }
                                         </ul>
                                     </li>
+                                }
+                                else if (Claims[3].Value == "True")
+                                {
+                                    <li><a href="/admin">CMS Settings</a></li>
                                 }
 
                                 <li>
