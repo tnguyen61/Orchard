@@ -1,4 +1,4 @@
-﻿a {
+a {
   color: #428bca;
   text-decoration: none;
 }
@@ -12,6 +12,9 @@ body {
   padding: 10px;
   margin-bottom: 5ex;
   background: #fff;
+}
+.body-content-container footer {
+  padding-top: 0.6em;
 }
 .body-content-container footer p {
   background-image: linear-gradient(#c9c9c9, #ffffff 30%);
@@ -171,6 +174,15 @@ h3 {
   background-image: linear-gradient(#b7c5d7, #7590b2);
   background-color: #b7c5d7;
 }
+.btn.btn-info {
+  color: #fff;
+  background-image: linear-gradient(#4e6a8d, #3c516c);
+  background-color: #4e6a8d;
+}
+.btn.btn-info:hover {
+  background-image: linear-gradient(#b7c5d7, #57769d);
+  background-color: #57769d;
+}
 .btn {
   background-image: linear-gradient(#ffffff, #c9c9c9);
   background-color: #fff;
@@ -272,13 +284,6 @@ h3 {
 #projects table.team-member-popover .name {
   width: 480px;
 }
-#projects .project-summary-popover {
-  overflow: auto;
-  height: 300px;
-}
-#projects .project-summary-popover .description {
-  white-space: pre-wrap;
-}
 .role {
   text-transform: capitalize;
 }
@@ -291,9 +296,6 @@ h3 {
 #checklist-landing #right {
   width: 25%;
   float: left;
-}
-#checklist-landing a {
-  text-decoration: underline;
 }
 #checklist-landing .edit {
   padding-left: 64px;
