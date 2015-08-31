@@ -19,7 +19,7 @@ namespace NGM.CasClient.Client.Utils {
         /// is why the service and server name configuration parameters exist.
         /// </remarks>
         /// <returns>The redirection URL to use</returns>
-        string ConstructLoginRedirectUrl(bool gateway, bool renew);
+        string ConstructLoginRedirectUrl(bool gateway, bool renew, bool gatewayCheck);
 
         /// <summary>
         /// Constructs a service URL using configured values in the following order:
@@ -182,7 +182,8 @@ namespace NGM.CasClient.Client.Utils {
         /// is why the service and server name configuration parameters exist.
         /// </remarks>
         /// <returns>The redirection URL to use</returns>
-        public string ConstructLoginRedirectUrl(bool gateway, bool renew) {
+        public string ConstructLoginRedirectUrl(bool gateway, bool renew, bool gatewayCheck)
+        {
             if (gateway && renew) {
                 throw new ArgumentException("Gateway and Renew parameters are mutually exclusive and cannot both be True");
             }
@@ -193,7 +194,8 @@ namespace NGM.CasClient.Client.Utils {
             if (renew) {
                 ub.QueryItems.Add("renew", "true");
             }
-            else if (gateway) {
+            else if (gatewayCheck)
+            {
                 ub.QueryItems.Add("gateway", "true");
             }
 
