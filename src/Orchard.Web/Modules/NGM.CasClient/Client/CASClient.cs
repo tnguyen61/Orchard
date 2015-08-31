@@ -253,7 +253,7 @@ namespace NGM.CasClient.Client {
         /// CAS credentials
         /// </summary>
         public RedirectResult RedirectToLoginPage(bool forceRenew) {
-            string redirectUrl = _urlUtil.ConstructLoginRedirectUrl(false, forceRenew);
+            string redirectUrl = _urlUtil.ConstructLoginRedirectUrl(_casServices.Settings.Gateway, forceRenew, false);
             Logger.Information("Redirecting to {0}", redirectUrl);
             return new RedirectResult(redirectUrl);
         }
@@ -322,7 +322,7 @@ namespace NGM.CasClient.Client {
 
             SetGatewayStatusCookie(httpContext, GatewayStatus.Attempting);
 
-            string redirectUrl = _urlUtil.ConstructLoginRedirectUrl(true, false);
+            string redirectUrl = _urlUtil.ConstructLoginRedirectUrl(true, false, true);
             Logger.Information("Performing gateway redirect to {0}", redirectUrl);
             return new RedirectResult(redirectUrl);
         }
