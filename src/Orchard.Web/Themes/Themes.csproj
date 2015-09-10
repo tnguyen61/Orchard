@@ -311,6 +311,9 @@
     <Content Include="wctk\Views\MenuItem.cshtml" />
     <Content Include="wctk\Views\MenuItemLink.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="wctk\Styles\dhhq-variables.less" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

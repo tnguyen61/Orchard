@@ -102,29 +102,29 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Knowledge Center<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/repository">Resources/Documents</a></li>
+                                    <li><a href="https://facilities.health.mil/repository">Resources/Documents</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">World-Class ToolKit<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/world-class-toolkit/case-studies/">Case Studies</a></li>
-                                    <li><a href="https://wcftoolkitdev.nika-ae.com/CIDM/History">CIDM Archive</a></li>
-                                    <li><a href="/world-class-toolkit/mhs-facilities-design-guidelines-criteria-policy/">Design Guidelines, Criteria &amp; Policy</a></li>
-                                    <li><a href="/world-class-toolkit/post-occupancy-evaluation-overview/">Post-Occupancy Evaluation</a></li>
-                                    <li><a href="/project">Project Tool</a></li>
-                                    <li><a href="/checklist">World-Class Checklist</a></li>
-                                    <li><a href="/world-class-toolkit/world-class-checklist-reports/">World-Class Checklist Reports</a></li>
+                                    <li><a href="/case-studies">Case Studies</a></li>
+                                    <li><a href="https://facilities.health.mil/CIDM">CIDM</a></li>
+                                    <li><a href="/design-guidelines">Design Guidelines, Criteria &amp; Policy</a></li>
+                                    <li><a href="/post-occupancy-evaluations">Post-Occupancy Evaluation</a></li>
+                                    <li><a href="https://facilities.health.mil/project">Project Tool</a></li>
+                                    <li><a href="https://facilities.health.mil/checklist">World-Class Checklist</a></li>
+                                    <li><a href="/world-class-checklist-reports">World-Class Checklist Reports</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/world-class-toolkit/mhs-facilities-analytics/">Executive Dashboard</a></li>
+                            <li><a href="/mhs-facilities-analytics-dashboard">Executive Dashboard</a></li>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/contact-us/frequently-asked-questions/">Frequently Asked Questions</a></li>
-                                    <li><a href="/contact-us/website-notices-policies-disclaimers/">Website Notices, Policies &amp; Disclaimers</a></li>
-                                    <li><a href="/contact-us/how-to-use-this-site/">How To Use This Site</a></li>
-                                    <li><a href="/contact-us/support-availability/">Support Availability</a></li>
+                                    <li><a href="/frequently-asked-questions">Frequently Asked Questions</a></li>
+                                    <li><a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a></li>
+                                    <li><a href="/how-to-use-this-site">How To Use This Site</a></li>
+                                    <li><a href="/support-availability">Support Availability</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -141,16 +141,20 @@
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                                         <ul class="dropdown-menu multi-level">
-                                            <li><a href="https://wcftoolkitdev.nika-ae.com/Admin">View Users</a></li>
-                                            <li><a href="https://wcftoolkitdev.nika-ae.com/AdminCompose">Compose Email</a></li>
-                                            <li><a href="https://wcftoolkitdev.nika-ae.com/Admin/SupportEmail">Update Email</a></li>
-                                            <li><a href="https://wcftoolkitdev.nika-ae.com/Admin/Reindex">Rebuild Document Index</a></li>
-                                            @if (Claims[2].Value == "True")
+                                            <li><a href="https://facilities.health.mil/Admin">View Users</a></li>
+                                            <li><a href="https://facilities.health.mil/Admin/Compose">Compose Email</a></li>
+                                            <li><a href="https://facilities.health.mil/Admin/SupportEmail">Update Email</a></li>
+                                            <li><a href="https://facilities.health.mil/Admin/Reindex">Rebuild Document Index</a></li>
+                                            @if (Claims[3].Value == "True")
                                             {
                                                 <li><a href="/admin">CMS Settings</a></li>
                                             }
                                         </ul>
                                     </li>
+                                }
+                                else if (Claims[3].Value == "True")
+                                {
+                                    <li><a href="/admin">CMS Settings</a></li>
                                 }
 
                                 <li>
@@ -180,9 +184,8 @@
             <a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a> |
             <a href="/document-posting-restrictions">Document Posting Restrictions</a> |
             <a href="http://health.mil/Military-Health-Topics/Privacy-and-Civil-Liberties">FOIA</a> |
-            <a href="/sitemap">
-                Site Map
-            </a> | <a href="/contact-us">Contact Us</a>
+            <a href="/sitemap">Site Map</a> |
+            <a href="/contact-us">Contact Us</a>
         </p>
     </footer>
 </div>
