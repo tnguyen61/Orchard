@@ -147,10 +147,24 @@ namespace NGM.CasClient.Services {
             }
             else if (httpContext.User is CasPrincipal) {
 
-                var User = CASUser.Get((CasPrincipal)httpContext.User);
-                User.ContentManager = _contentManager;
+                using (var context = new OrchardEntities())
+                {
 
-                return User;
+                    var casPrincipal = (CasPrincipal)httpContext.User;
+
+                    var UserAccount = context.Orchard_Users_UserPartRecord.FirstOrDefault(x => x.Email.ToLower() == casPrincipal.MaxAttributes.EmailAddress.ToLower());
+
+                    if (UserAccount == null)
+                        UserAccount = context.Orchard_Users_UserPartRecord.FirstOrDefault(x => x.UserName == "DefaultAccountDoNotDelete");
+
+                    var contentItem = _contentManager.Get(UserAccount.Id);
+
+                    var orchardUser = contentItem.As<IUser>();
+
+                    return orchardUser;
+
+                }
+                
             }
             return null;
         }

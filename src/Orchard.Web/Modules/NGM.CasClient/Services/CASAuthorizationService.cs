@@ -66,11 +66,11 @@ namespace NGM.CasClient.Services {
                     IEnumerable<string> rolesToExamine;
                     if (context.User == null) {
                         rolesToExamine = AnonymousRole;
-                    } else if (user is CASUser) {
-                        var casUser = (CASUser)user;
+                    } else if (user.As<IUserRoles>().Roles.Any()) {
+                        
 
                         // the current user is not null, so get his roles and add "Authenticated" to it
-                        rolesToExamine = casUser.Roles.Union(AuthenticatedRole);
+                        rolesToExamine = user.As<IUserRoles>().Roles.Union(AuthenticatedRole);
 
                     } else {
                         // the user is not null and has no specific role, then it's just "Authenticated"

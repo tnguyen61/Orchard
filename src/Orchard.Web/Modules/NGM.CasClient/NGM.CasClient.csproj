@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,7 +111,8 @@
     <Compile Include="Filters\WebApi\WebApiActionFilter.cs" />
     <Compile Include="MemberEntities.cs" />
     <Compile Include="MissingSettingsBanner.cs" />
-    <Compile Include="Models\CASUser.cs" />
+    <Compile Include="OrchardEntities.cs" />
+    <Compile Include="Orchard_Users_UserPartRecord.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Services\DefaultCasIdentityRetriever.cs" />
     <Compile Include="Services\CASAuthenticationService.cs" />
