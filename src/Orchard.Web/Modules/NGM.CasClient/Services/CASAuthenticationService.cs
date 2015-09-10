@@ -153,14 +153,12 @@ namespace NGM.CasClient.Services {
                     var casPrincipal = (CasPrincipal)httpContext.User;
 
                     var UserAccount = context.Orchard_Users_UserPartRecord.FirstOrDefault(x => x.Email.ToLower() == casPrincipal.MaxAttributes.EmailAddress.ToLower());
-
+                    
                     if (UserAccount == null)
                         UserAccount = context.Orchard_Users_UserPartRecord.FirstOrDefault(x => x.UserName == "DefaultAccountDoNotDelete");
 
-                    var contentItem = _contentManager.Get(UserAccount.Id);
-
-                    var orchardUser = contentItem.As<IUser>();
-
+                    var orchardUser = _contentManager.Query("User").List().Select(x => x.As<IUser>()).First(x => x.Email.ToLower() == UserAccount.Email.ToLower());
+                    
                     return orchardUser;
 
                 }
