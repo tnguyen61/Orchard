@@ -78,6 +78,18 @@ namespace NGM.CasClient.Models {
             set { Record.TicketTimeTolerance = value; }
         }
 
+        public string FederatedKey
+        {
+            get { return Record.FederatedKey; }
+            set { Record.FederatedKey = value; }
+        }
+
+        public string ToolkitBaseUrl
+        {
+            get { return Record.ToolkitBaseUrl; }
+            set { Record.ToolkitBaseUrl = value; }
+        }
+
         public bool IsConfigured() {
             if (string.IsNullOrWhiteSpace(ProxyCallbackParameterName))
                 return false;
@@ -114,5 +126,7 @@ namespace NGM.CasClient.Models {
         public virtual string ServiceTicketManager { get; set; }
         public virtual string ProxyTicketManager { get; set; }
         public virtual long TicketTimeTolerance { get; set; }
+        public virtual string FederatedKey { get; set; }
+        public virtual string ToolkitBaseUrl { get; set; }
     }
 }

@@ -6,6 +6,10 @@ using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Mvc;
 using Orchard.Validation;
+using Orchard;
+using NGM.CasClient.Models;
+using Orchard.ContentManagement;
+using NGM.CasClient.Client.Utils;
 
 namespace NGM.CasClient.Client.State {
     public interface IServiceTicketManagerWrapper : IServiceTicketManager {
@@ -14,18 +18,26 @@ namespace NGM.CasClient.Client.State {
 
     public class CacheServiceTicketManager : IServiceTicketManagerWrapper {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOrchardServices _orchardServices;
 
         /// <summary>
         /// This prefix is prepended to CAS Service Ticket as the key to the cache.
         /// </summary>
         private const string CACHE_TICKET_KEY_PREFIX = "CasTicket::";
 
+        private CASSettingsPart Settings
+        {
+            get { return _orchardServices.WorkContext.CurrentSite.As<CASSettingsPart>(); }
+        }
+
         /// <summary>
         /// The constructor is marked internal because this object is not suitable for use 
         /// outside of this assembly.
         /// </summary>
-        public CacheServiceTicketManager(IHttpContextAccessor httpContextAccessor) {
+        public CacheServiceTicketManager(IOrchardServices orchardServices, IHttpContextAccessor httpContextAccessor)
+        {
             _httpContextAccessor = httpContextAccessor;
+            _orchardServices = orchardServices;
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
         }
@@ -65,6 +77,21 @@ namespace NGM.CasClient.Client.State {
                 var result = context.Cache[key] as CasAuthenticationTicket;
                 return result;
             }
+
+            if (!String.IsNullOrEmpty(Settings.FederatedKey) && !String.IsNullOrEmpty(Settings.ToolkitBaseUrl))
+            {
+
+                String Url = Settings.ToolkitBaseUrl + "/Federated/CasAuthTicket?Id=" + key;
+
+                var Response = HttpUtil.PerformFederatedHttpGet(Url, Settings.FederatedKey);
+
+                if (!String.IsNullOrEmpty(Response))
+                {
+
+                }
+
+            }
+
             return null;
         }
 
