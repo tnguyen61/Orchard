@@ -56,7 +56,7 @@ namespace NGM.CasClient.Client.Security {
         /// key/value pairs for the attributes associated with this Assertion.
         /// e.g. authentication type.
         /// </summary>
-        public Dictionary<string, IList<string>> Attributes {
+        public Dictionary<string, List<string>> Attributes {
             get;
             private set;
         }
@@ -71,6 +71,8 @@ namespace NGM.CasClient.Client.Security {
         #endregion
 
         #region Constructors
+        public Assertion() { }
+
         /// <summary>
         /// Creates a new Assertion with the supplied Principal name, a
         /// ValidFromDate of now, no ValidUntilDate, and no attributes.
@@ -78,7 +80,7 @@ namespace NGM.CasClient.Client.Security {
         /// <param name="principalName">
         /// the Principal name associated with this Assertion.
         /// </param>
-        public Assertion(string principalName) : this(principalName, new Dictionary<string, IList<string>>()) { }
+        public Assertion(string principalName) : this(principalName, new Dictionary<string, List<string>>()) { }
 
         /// <summary>
         /// Creates a new Assertion with the supplied principal name and
@@ -91,13 +93,14 @@ namespace NGM.CasClient.Client.Security {
         /// the key/value pairs for the attributes to associate with this
         /// Assertion.
         /// </param>
-        public Assertion(string principalName, IDictionary<string, IList<string>> attributes) {
+        public Assertion(string principalName, IDictionary<string, List<string>> attributes)
+        {
             Argument.ThrowIfNull(principalName, "principalName", "principalName cannot be null.");
             Argument.ThrowIfNull(attributes, "attributes", "attributes cannot be null.");
 
             PrincipalName = principalName;
             ValidFromDate = DateTime.Now;
-            Attributes = new Dictionary<string, IList<string>>(attributes);
+            Attributes = new Dictionary<string, List<string>>(attributes);
         }
 
         /// <summary>
@@ -122,7 +125,7 @@ namespace NGM.CasClient.Client.Security {
             PrincipalName = principalName;
             ValidFromDate = validFromDate;
             ValidUntilDate = validUntilDate;
-            Attributes = new Dictionary<string, IList<string>>();
+            Attributes = new Dictionary<string, List<string>>();
         }
 
         /// <summary>
@@ -142,7 +145,8 @@ namespace NGM.CasClient.Client.Security {
         /// the key/value pairs for the attributes to associate with this
         /// Assertion.
         /// </param>
-        public Assertion(string principalName, DateTime validFromDate, DateTime validUntilDate, IDictionary<string, IList<string>> attributes) {
+        public Assertion(string principalName, DateTime validFromDate, DateTime validUntilDate, IDictionary<string, List<string>> attributes)
+        {
             Argument.ThrowIfNull(principalName, "principalName", "principalName cannot be null.");
             if (validFromDate == null) {
                 throw new ArgumentNullException("validFromDate", "validFromDate cannot be null.");
@@ -152,7 +156,7 @@ namespace NGM.CasClient.Client.Security {
             PrincipalName = principalName;
             ValidFromDate = validFromDate;
             ValidUntilDate = validUntilDate;
-            Attributes = new Dictionary<string, IList<string>>(attributes);
+            Attributes = new Dictionary<string, List<string>>(attributes);
         }
         #endregion
     }

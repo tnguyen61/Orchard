@@ -32,24 +32,37 @@ namespace NGM.CasClient.Client.Utils {
 
         internal static string PerformFederatedHttpGet(string url, string FederatedKey)
         {
-            string str = (string)null;
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpWebRequest.Headers.Add("FederatedKey", FederatedKey);
-            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+
+            try
             {
-                if (httpWebResponse.StatusCode == HttpStatusCode.OK)
+
+                string str = (string)null;
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.Headers.Add("FederatedKey", FederatedKey);
+                using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
                 {
-                    using (Stream responseStream = httpWebResponse.GetResponseStream())
+                    if (httpWebResponse.StatusCode == HttpStatusCode.OK)
                     {
-                        if (responseStream != null)
+                        using (Stream responseStream = httpWebResponse.GetResponseStream())
                         {
-                            using (StreamReader streamReader = new StreamReader(responseStream))
-                                str = streamReader.ReadToEnd();
+                            if (responseStream != null)
+                            {
+                                using (StreamReader streamReader = new StreamReader(responseStream))
+                                    str = streamReader.ReadToEnd();
+                            }
                         }
                     }
                 }
+                return str;
+
             }
-            return str;
+
+            catch
+            {
+                return "";
+            }
+
+            
         }
 
         internal static string PerformHttpPost(string url, string postData, bool requireHttp200)

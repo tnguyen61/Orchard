@@ -31,7 +31,7 @@ namespace NGM.CasClient.Controllers
             return _casClient.RedirectToLoginPage();
         }
 
-        [Admin]
+        [AlwaysAccessible]
         public void LogOff()
         {
             _casClient.SingleSignOut(HttpContext);

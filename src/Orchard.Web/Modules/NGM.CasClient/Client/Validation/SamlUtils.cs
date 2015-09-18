@@ -75,8 +75,8 @@ namespace NGM.CasClient.Client.Validation {
         /// Thrown if expected entries if the requested SAML subject can not be
         /// parsed from the attrStmtNode.
         /// </exception>
-        public static IDictionary<string, IList<string>> GetAttributesFor(ILogger logger, XmlNode attributeStmtNode, XmlNamespaceManager nsmgr, string subjectName) {
-            IDictionary<string, IList<string>> attributes = new Dictionary<string, IList<string>>();
+        public static IDictionary<string, List<string>> GetAttributesFor(ILogger logger, XmlNode attributeStmtNode, XmlNamespaceManager nsmgr, string subjectName) {
+            IDictionary<string, List<string>> attributes = new Dictionary<string, List<string>>();
             if (attributeStmtNode == null) {
                 return attributes;
             }
@@ -107,7 +107,7 @@ namespace NGM.CasClient.Client.Validation {
 
                     XmlNodeList attrValuesNodes = nextAttr.ChildNodes;
 
-                    IList<string> values = new List<string>();
+                    List<string> values = new List<string>();
                     foreach (XmlNode nextValueNode in attrValuesNodes) {
                         XmlNode textNode = nextValueNode.FirstChild;
                         if (textNode == null) {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace NGM.CasClient.Client.Security
     [Serializable]
     public class maxAttributes
     {
+
+        [JsonIgnore]
         public string[] Groups
         {
             get

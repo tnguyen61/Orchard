@@ -133,7 +133,7 @@ namespace NGM.CasClient.Client.Validation {
 
                 XmlNode attributeStmtNode = assertionNode.SelectSingleNode("descendant::assertion:AttributeStatement", nsmgr);
                 if (attributeStmtNode != null) {
-                    IDictionary<string, IList<string>> personAttributes =
+                    IDictionary<string, List<string>> personAttributes =
                         SamlUtils.GetAttributesFor(_logger, attributeStmtNode, nsmgr, subject);
 
                     CasPrincipal = new CasPrincipal(new Assertion(subject, notBefore, notOnOrAfter, personAttributes), null, null);

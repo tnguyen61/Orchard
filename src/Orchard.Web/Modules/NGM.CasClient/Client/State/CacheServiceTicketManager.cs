@@ -6,10 +6,10 @@ using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Mvc;
 using Orchard.Validation;
-using Orchard;
-using NGM.CasClient.Models;
-using Orchard.ContentManagement;
+using System.Configuration;
 using NGM.CasClient.Client.Utils;
+using Newtonsoft.Json;
+using NGM.CasClient.Models;
 
 namespace NGM.CasClient.Client.State {
     public interface IServiceTicketManagerWrapper : IServiceTicketManager {
@@ -18,26 +18,18 @@ namespace NGM.CasClient.Client.State {
 
     public class CacheServiceTicketManager : IServiceTicketManagerWrapper {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IOrchardServices _orchardServices;
 
         /// <summary>
         /// This prefix is prepended to CAS Service Ticket as the key to the cache.
         /// </summary>
         private const string CACHE_TICKET_KEY_PREFIX = "CasTicket::";
 
-        private CASSettingsPart Settings
-        {
-            get { return _orchardServices.WorkContext.CurrentSite.As<CASSettingsPart>(); }
-        }
-
         /// <summary>
         /// The constructor is marked internal because this object is not suitable for use 
         /// outside of this assembly.
         /// </summary>
-        public CacheServiceTicketManager(IOrchardServices orchardServices, IHttpContextAccessor httpContextAccessor)
-        {
+        public CacheServiceTicketManager(IHttpContextAccessor httpContextAccessor) {
             _httpContextAccessor = httpContextAccessor;
-            _orchardServices = orchardServices;
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
         }
@@ -78,21 +70,38 @@ namespace NGM.CasClient.Client.State {
                 return result;
             }
 
-            if (!String.IsNullOrEmpty(Settings.FederatedKey) && !String.IsNullOrEmpty(Settings.ToolkitBaseUrl))
+            if (!String.IsNullOrEmpty(FederatedKey) && !String.IsNullOrEmpty(ToolkitBaseUrl))
             {
 
-                String Url = Settings.ToolkitBaseUrl + "/Federated/CasAuthTicket?Id=" + key;
+                String Url = ToolkitBaseUrl + "/Federated/CasAuthTicket?Id=" + key;
 
-                var Response = HttpUtil.PerformFederatedHttpGet(Url, Settings.FederatedKey);
+                var Response = HttpUtil.PerformFederatedHttpGet(Url, FederatedKey);
 
                 if (!String.IsNullOrEmpty(Response))
                 {
+                    var Ticket = JsonConvert.DeserializeObject<CasFederatedModel>(Response);
+
+                    var CasTicket = new CasAuthenticationTicket(Ticket.serviceTicket, Ticket.originatingServiceName, Ticket.clientHostAddress, Ticket.assertion, Ticket.attributes, DateTime.Now.AddDays(30));
+
+                    InsertTicket(CasTicket, DateTime.Now.AddDays(30));
+
+                    return CasTicket;
 
                 }
 
             }
 
             return null;
+        }
+
+        private string FederatedKey
+        {
+            get { return ConfigurationManager.AppSettings["FederatedKey"] ?? String.Empty; }
+        }
+
+        private string ToolkitBaseUrl
+        {
+            get { return ConfigurationManager.AppSettings["ToolkitBaseUrl"] ?? String.Empty; }
         }
 
         /// <summary>
@@ -343,7 +352,7 @@ namespace NGM.CasClient.Client.State {
         private static string GetTicketKey(string serviceTicket) {
             Argument.ThrowIfNullOrEmpty(serviceTicket, "serviceTicket", "serviceTicket parameter cannot be null or empty.");
 
-            return string.Format("{0},{1}", CACHE_TICKET_KEY_PREFIX, serviceTicket);
+            return string.Format("{0}{1}", CACHE_TICKET_KEY_PREFIX, serviceTicket);
         }
 
         public string Name {

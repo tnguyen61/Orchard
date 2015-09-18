@@ -174,7 +174,8 @@ namespace NGM.CasClient.Client {
             builder.AppendFormat("    Valid From...... {0}{1}", Assertion.ValidFromDate, Environment.NewLine);
             builder.AppendFormat("    Valid Until..... {0}{1}", Assertion.ValidUntilDate, Environment.NewLine);
             builder.AppendLine("    Attributes......");
-            foreach (KeyValuePair<string, IList<string>> attribute in Assertion.Attributes) {
+            foreach (KeyValuePair<string, List<string>> attribute in Assertion.Attributes)
+            {
                 builder.AppendLine("      " + attribute.Key);
                 foreach (string valuePart in attribute.Value) {
                     builder.AppendLine("        " + valuePart);

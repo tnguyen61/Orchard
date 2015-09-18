@@ -52,7 +52,7 @@ namespace NGM.CasClient.Client.Security {
         /// <summary>
         /// The key/value pairs for attributes associated with this Assertion.
         /// </summary>
-        Dictionary<string, IList<string>> Attributes {
+        Dictionary<string, List<string>> Attributes {
             get;
         }
 
