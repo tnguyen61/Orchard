@@ -56,7 +56,7 @@ namespace NGM.CasClient.Filters {
             var workContext = filterContext.RequestContext.GetWorkContext();
             var httpContext = workContext.HttpContext;
 
-            if (!_requestEvaluator.GetRequestIsAppropriateForCasAuthentication(httpContext)) {
+            if (!_requestEvaluator.GetRequestIsAppropriateForCasAuthentication(httpContext) || filterContext.Result is JsonResult) {
                 Logger.Debug("No EndRequest processing for {0}", httpContext.Request.RawUrl);
                 return;
             }

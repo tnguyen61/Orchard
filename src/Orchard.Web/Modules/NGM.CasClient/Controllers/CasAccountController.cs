@@ -1,4 +1,6 @@
 ﻿using NGM.CasClient.Client;
+using NGM.CasClient.Client.Security;
+using NGM.CasClient.Models;
 using Orchard.Security;
 using Orchard.UI.Admin;
 using System;
@@ -35,6 +37,40 @@ namespace NGM.CasClient.Controllers
         public void LogOff()
         {
             _casClient.SingleSignOut(HttpContext);
+        }
+
+        [AlwaysAccessible]
+        public JsonResult CasAuthTicket(String Id)
+        {
+
+            if (HttpContext.Cache[Id] != null)
+            {
+                var Ticket = HttpContext.Cache[Id] as CasAuthenticationTicket;
+
+                var Payload = new CasFederatedModel
+                {
+                    serviceTicket = Ticket.ServiceTicket,
+                    originatingServiceName = Ticket.OriginatingServiceName,
+                    clientHostAddress = Ticket.ClientHostAddress,
+                    assertion = Ticket.Assertion as Assertion,
+                    attributes = Ticket.MaxAttributes
+                };
+
+                return Json(Payload, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(String.Empty, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult Logout(String Id)
+        {
+
+            if (HttpContext.Cache[Id] != null)
+                HttpContext.Cache.Remove(Id);
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
+
         }
 
     }

@@ -45,6 +45,40 @@ namespace NGM.CasClient {
                         },
                     new MvcRouteHandler())
             };
+            yield return new RouteDescriptor
+            {
+                Priority = 100,
+                Route = new Route(
+                    "Federated/CasAuthTicket/{id}", // this is the name of the page url
+                    new RouteValueDictionary {
+                            {"area", "NGM.CasClient"}, // this is the name of your module
+                            {"controller", "CasAccount"},
+                            {"action", "CasAuthTicket"},
+                            {"id", UrlParameter.Optional}
+                        },
+                    new RouteValueDictionary(),
+                    new RouteValueDictionary {
+                            {"area", "NGM.CasClient"} // this is the name of your module
+                        },
+                    new MvcRouteHandler())
+            };
+            yield return new RouteDescriptor
+            {
+                Priority = 100,
+                Route = new Route(
+                    "Federated/Logout/{id}", // this is the name of the page url
+                    new RouteValueDictionary {
+                            {"area", "NGM.CasClient"}, // this is the name of your module
+                            {"controller", "CasAccount"},
+                            {"action", "Logout"},
+                            {"id", UrlParameter.Optional}
+                        },
+                    new RouteValueDictionary(),
+                    new RouteValueDictionary {
+                            {"area", "NGM.CasClient"} // this is the name of your module
+                        },
+                    new MvcRouteHandler())
+            };
         }
 
     }
