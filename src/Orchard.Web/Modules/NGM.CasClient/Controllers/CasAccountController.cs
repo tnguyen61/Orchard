@@ -5,6 +5,7 @@ using Orchard.Security;
 using Orchard.UI.Admin;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,7 +44,9 @@ namespace NGM.CasClient.Controllers
         public JsonResult CasAuthTicket(String Id)
         {
 
-            if (HttpContext.Cache[Id] != null)
+            var AuthKey = Request.Headers["FederatedKey"] ?? String.Empty;
+
+            if (AuthKey == ConfigurationManager.AppSettings["FederatedKey"] && HttpContext.Cache[Id] != null)
             {
                 var Ticket = HttpContext.Cache[Id] as CasAuthenticationTicket;
 
