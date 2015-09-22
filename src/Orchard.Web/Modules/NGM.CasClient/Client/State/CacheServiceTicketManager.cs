@@ -81,6 +81,9 @@ namespace NGM.CasClient.Client.State {
                 {
                     var Ticket = JsonConvert.DeserializeObject<CasFederatedModel>(Response);
 
+                    if (Ticket == null)
+                        return null;
+
                     var CasTicket = new CasAuthenticationTicket(Ticket.serviceTicket, Ticket.originatingServiceName, Ticket.clientHostAddress, Ticket.assertion, Ticket.attributes, DateTime.Now.AddDays(30));
 
                     InsertTicket(CasTicket, DateTime.Now.AddDays(30));
