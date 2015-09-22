@@ -1,3 +1,18 @@
-﻿@model dynamic 
-<h1>@Html.TitleForPage(T("Access Denied").ToString())</h1>
-<p>@T("You do not have permission to complete your request.")</p>
+﻿@{
+    ViewBag.Title = "Unauthorized";
+}
+<section class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6">
+            <h2>@ViewBag.Title</h2>
+            <p>You are not authorized to view this page.</p>
+            <p>
+                If you believe this to be a mistake, please contact <a href="mailto:wcfsupport@dha.mil">wcfsupport@dha.mil</a> or
+                @Html.ActionLink("fill out a support form", "Contact", "Support", new { area = "" }, new { }) to request authorization.
+            </p>
+        </div>
+        <div class="col-md-2">
+            <span class="fa fa-exclamation-triangle" style="color: #c2002a; font-size:150px;"></span>
+        </div>
+    </div>
+</section>
