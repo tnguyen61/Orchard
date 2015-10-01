@@ -1,0 +1,7 @@
+﻿Name: ToolkitPath
+Author: NIKA
+Website: facilities.health.mil
+Version: 1.0
+OrchardVersion: 1.9
+Description: This module will dynamically create links based on your config file.
+FeatureDescription: World Class Toolkit link creator.

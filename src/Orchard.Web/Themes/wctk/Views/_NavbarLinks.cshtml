@@ -1,0 +1,74 @@
+﻿@using ToolkitPath
+<ul class="nav navbar-nav">
+    <li id="nav-home"><a href="/">Home</a></li>
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Knowledge Center<b class="caret"></b></a>
+        <ul class="dropdown-menu multi-level">
+            <li><a href="@Html.ToolkitPath("/repository")">Resources/Documents</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">World-Class ToolKit<b class="caret"></b></a>
+        <ul class="dropdown-menu multi-level">
+            <li><a href="/case-studies">Case Studies</a></li>
+            <li><a href="@Html.ToolkitPath("/CIDM")">CIDM</a></li>
+            <li><a href="/design-guidelines">Design Guidelines, Criteria &amp; Policy</a></li>
+            <li><a href="/post-occupancy-evaluations">Post-Occupancy Evaluation</a></li>
+            <li><a href="@Html.ToolkitPath("/project")">Project Tool</a></li>
+            <li><a href="@Html.ToolkitPath("/checklist")">World-Class Checklist</a></li>
+            <li><a href="/world-class-checklist-reports">World-Class Checklist Reports</a></li>
+        </ul>
+    </li>
+    <li><a href="@Html.ToolkitPath("/Repository/Download/15004")">Executive Dashboard</a></li>
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us<b class="caret"></b></a>
+        <ul class="dropdown-menu multi-level">
+            <li><a href="/frequently-asked-questions">Frequently Asked Questions</a></li>
+            <li><a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a></li>
+            <li><a href="/how-to-use-this-site">How To Use This Site</a></li>
+            <li><a href="/support-availability">Support Availability</a></li>
+        </ul>
+    </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    @if (Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity)
+    {
+    var Claims = new List
+    <System.Security.Claims.Claim>
+        ((User.Identity as System.Security.Principal.GenericIdentity).Claims);
+        <li>
+            <a href="@Html.ToolkitPath("/Account")">@(Claims[1].Value)</a>
+        </li>
+
+        if (Claims[2].Value == "True")
+        {
+        <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+                <li><a href="@Html.ToolkitPath("/Admin")">View Users</a></li>
+                <li><a href="@Html.ToolkitPath("/Admin/Compose")">Compose Email</a></li>
+                <li><a href="@Html.ToolkitPath("/Admin/SupportEmail")">Update Email</a></li>
+                <li><a href="@Html.ToolkitPath("/Admin/Reindex")">Rebuild Document Index</a></li>
+                @if (Claims[3].Value == "True")
+                {
+                <li><a href="/admin">CMS Settings</a></li>
+                }
+            </ul>
+        </li>
+        }
+        else if (Claims[3].Value == "True")
+        {
+        <li><a href="/admin">CMS Settings</a></li>
+        }
+
+        <li>
+            <a href="~/Users/Account/Logoff">Log Off</a>
+        </li>
+        }
+        else
+        {
+        <li>
+            <a href="~/Users/Account/LogOn">Log In</a>
+        </li>
+        }
+</ul>

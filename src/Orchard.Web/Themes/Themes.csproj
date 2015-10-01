@@ -25,6 +25,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -149,6 +150,7 @@
     <Content Include="wctk\Styles\Site.min.css" />
     <Content Include="wctk\Theme.png" />
     <Content Include="wctk\Theme.txt" />
+    <None Include="wctk\Views\_NavbarLinks.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -211,6 +213,10 @@
       <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
       <Name>Orchard.Framework</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ToolkitPath\ToolkitPath.csproj">
+      <Project>{DE6EF5D3-F795-4646-9483-3F4E0EEE9094}</Project>
+      <Name>ToolkitPath</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
