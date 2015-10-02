@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ToolkitPath
+@{
     ViewBag.Title = "Whoops!";
 }
 <section class="container">
@@ -8,7 +9,7 @@
             <p>The page you are trying to reach is either unavailable at the moment or does not exist.</p>
             <p>Please check the link you are using and try again. Or, visit our <a href="/home">Home page</a> to find something else you'd like to see</p>
             <p>
-                You may also contact <a href="mailto:wcfsupport@dha.mil">wcfsupport@dha.mil</a> or @Html.ActionLink("fill out a support form", "Contact", "Support", new { area = "" }, new { })
+                You may also contact <a href="mailto:wcfsupport@dha.mil">wcfsupport@dha.mil</a> or <a href="@Html.ToolkitPath("/Support/Contact")">fill out a support form</a>
                 for assistance troubleshooting this issue.
             </p>
         </div>
