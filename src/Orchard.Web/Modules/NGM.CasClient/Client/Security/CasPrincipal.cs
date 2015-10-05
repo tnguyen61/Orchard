@@ -154,7 +154,7 @@ namespace NGM.CasClient.Client.Security {
             {
                 var username = MaxAttributes.EmailAddress.ToLowerInvariant();
 
-                IsAdmin = db.aspnet_Users.Where(u => u.LoweredUserName == username).SelectMany(x => x.aspnet_Roles.Select(y => y.RoleName)).Any(x => x == "Administrator");
+                IsAdmin = db.aspnet_Users.Where(u => u.LoweredUserName == username).SelectMany(x => x.aspnet_Roles.Select(y => y.RoleName)).Any(x => x == "System Administrator");
                 IsCmsAdmin = db.aspnet_Users.Where(u => u.LoweredUserName == username).SelectMany(x => x.aspnet_Roles.Select(y => y.RoleName)).Any(x => x == "CMS Manager");
             }
 
