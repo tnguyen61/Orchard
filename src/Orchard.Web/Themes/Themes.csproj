@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TheAdmin\Scripts\admin.js" />
+    <Content Include="TheAdmin\Styles\font-awesome.css" />
     <Content Include="TheAdmin\Styles\ie.css" />
     <Content Include="TheAdmin\Styles\ie7.css" />
     <Content Include="TheAdmin\Styles\ie8.css" />
@@ -98,6 +99,8 @@
     <Content Include="TheAdmin\Views\Pager.cshtml" />
     <Content Include="TheAdmin\Views\OrchardVersion.cshtml" />
     <Content Include="TheThemeMachine\ThemeZonePreview.png" />
+    <Content Include="wctk\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="wctk\Scripts\bootstrap.min.js" />
     <Content Include="wctk\Scripts\jquery-2.1.4.min.js" />
     <Content Include="wctk\Styles\nika-slider.css" />
@@ -150,6 +153,14 @@
     <Content Include="wctk\Styles\Site.min.css" />
     <Content Include="wctk\Theme.png" />
     <Content Include="wctk\Theme.txt" />
+    <Content Include="wctk\Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="wctk\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="wctk\Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="wctk\Content\fonts\FontAwesome.otf" />
+    <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="wctk\Views\_NavbarLinks.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
