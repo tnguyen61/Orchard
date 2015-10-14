@@ -103,6 +103,8 @@
     <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="wctk\Scripts\bootstrap.min.js" />
     <Content Include="wctk\Scripts\jquery-2.1.4.min.js" />
+    <Content Include="wctk\Scripts\knockout-3.3.0.js" />
+    <Content Include="wctk\Scripts\ViewModels\SupportCounter.js" />
     <Content Include="wctk\Styles\nika-slider.css" />
     <Content Include="wctk\Scripts\nika-slider.js" />
     <Content Include="wctk\Styles\bootstrap-datepicker.css" />

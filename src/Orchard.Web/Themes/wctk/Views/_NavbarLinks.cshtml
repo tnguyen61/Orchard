@@ -23,6 +23,7 @@
     <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
+            <li><a href="@Html.ToolkitPath("/Support/Contact")">Contact Support</a></li>
             <li><a href="/frequently-asked-questions">Frequently Asked Questions</a></li>
             <li><a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a></li>
             <li><a href="/how-to-use-this-site">How To Use This Site</a></li>
@@ -33,42 +34,51 @@
 <ul class="nav navbar-nav navbar-right">
     @if (Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity)
     {
-    var Claims = new List
-    <System.Security.Claims.Claim>
-        ((User.Identity as System.Security.Principal.GenericIdentity).Claims);
+        var Claims = new List
+        <System.Security.Claims.Claim>
+            ((User.Identity as System.Security.Principal.GenericIdentity).Claims);
+        if (Claims[2].Value == "True")
+        {
+            <li id="ticket-counter" target="@Html.ToolkitPath("/Support/TicketSummaryJsonp")">
+                <a href="@Html.ToolkitPath("/Support/Tickets")">
+                    <i class="fa fa-fw fa-envelope"></i>
+                    <span class="badge" data-bind="text: newMessages"></span>
+                </a>
+            </li>
+        }
         <li>
             <a href="@Html.ToolkitPath("/Account")">@(Claims[1].Value)</a>
         </li>
 
         if (Claims[2].Value == "True")
         {
-        <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-            <ul class="dropdown-menu multi-level">
-                <li><a href="@Html.ToolkitPath("/Admin")">View Users</a></li>
-                <li><a href="@Html.ToolkitPath("/Admin/Compose")">Compose Email</a></li>
-                <li><a href="@Html.ToolkitPath("/Admin/SupportEmail")">Update Email</a></li>
-                <li><a href="@Html.ToolkitPath("/Admin/Reindex")">Rebuild Document Index</a></li>
-                @if (Claims[3].Value == "True")
-                {
-                <li><a href="/admin">CMS Settings</a></li>
-                }
-            </ul>
-        </li>
+            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                <ul class="dropdown-menu multi-level">
+                    <li><a href="@Html.ToolkitPath("/Admin")">View Users</a></li>
+                    <li><a href="@Html.ToolkitPath("/Admin/Compose")">Compose Email</a></li>
+                    <li><a href="@Html.ToolkitPath("/Admin/SupportEmail")">Update Email</a></li>
+                    <li><a href="@Html.ToolkitPath("/Admin/Reindex")">Rebuild Document Index</a></li>
+                    @if (Claims[3].Value == "True")
+                    {
+                        <li><a href="/admin">CMS Settings</a></li>
+                    }
+                </ul>
+            </li>
         }
         else if (Claims[3].Value == "True")
         {
-        <li><a href="/admin">CMS Settings</a></li>
+            <li><a href="/admin">CMS Settings</a></li>
         }
 
         <li>
             <a href="~/Users/Account/Logoff">Log Off</a>
         </li>
-        }
-        else
-        {
+    }
+    else
+    {
         <li>
             <a href="~/Users/Account/LogOn">Log In</a>
         </li>
-        }
+    }
 </ul>
