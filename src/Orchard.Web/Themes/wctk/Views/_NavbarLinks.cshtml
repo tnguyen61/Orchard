@@ -1,4 +1,7 @@
 ﻿@using ToolkitPath
+@{
+    var isLoggedIn = Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity;
+}
 <ul class="nav navbar-nav">
     <li id="nav-home"><a href="/">Home</a></li>
     <li>
@@ -11,10 +14,16 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">World-Class ToolKit<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
             <li><a href="/case-studies">Case Studies</a></li>
-            <li><a href="@Html.ToolkitPath("/CIDM")">CIDM</a></li>
+            @if (isLoggedIn)
+            {
+                <li><a href="@Html.ToolkitPath("/CIDM")">CIDM</a></li>
+            }
             <li><a href="/design-guidelines">Design Guidelines, Criteria &amp; Policy</a></li>
             <li><a href="/post-occupancy-evaluations">Post-Occupancy Evaluation</a></li>
-            <li><a href="@Html.ToolkitPath("/project")">Project Tool</a></li>
+            @if (isLoggedIn)
+            {
+                <li><a href="@Html.ToolkitPath("/project")">Project Tool</a></li>
+            }
             <li><a href="@Html.ToolkitPath("/checklist")">World-Class Checklist</a></li>
             <li><a href="/world-class-checklist-reports">World-Class Checklist Reports</a></li>
         </ul>
@@ -32,7 +41,7 @@
     </li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
-    @if (Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity)
+    @if (isLoggedIn)
     {
         var Claims = new List
         <System.Security.Claims.Claim>
