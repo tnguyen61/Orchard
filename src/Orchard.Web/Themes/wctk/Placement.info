@@ -2,14 +2,14 @@
   <Match ContentType="Page">
     <Match DisplayType="Detail">
       <Place Parts_Common_Metadata="-"/>
-   <Place Parts_Tags_ShowTags="-"/>
+      <Place Parts_Tags_ShowTags="-"/>
     </Match>
   </Match>
   <Match Path="/">
- <Place Parts_Common_Metadata="-"/>
- <Place Parts_Title="-"/>
+    <Place Parts_Common_Metadata="-"/>
+    <Place Parts_Title="-"/>
   </Match>
   <Match DisplayType="Summary">
-      <Place Parts_Common_Metadata="-"/>
+    <Place Parts_Tags_ShowTags="Footer:1" />
   </Match>
 </Placement>

@@ -1,0 +1,15 @@
+﻿@using Orchard.ContentManagement
+@{
+    var contentItem = (ContentItem)Model.ContentItem;
+    var newLine = "</p>" + Environment.NewLine + "<p>";
+    var layoutHtml = (string)Model.LayoutHtml
+        .Replace("<br />", Environment.NewLine)
+        .Replace("<br>", Environment.NewLine);
+    var excerpt = new HtmlString(Html
+        .Excerpt(layoutHtml, 200)
+        .ToString()
+        .Trim()
+        .Replace(Environment.NewLine, newLine)
+        );
+}
+<p>@excerpt</p>

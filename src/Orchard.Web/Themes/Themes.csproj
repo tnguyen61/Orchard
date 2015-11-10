@@ -105,6 +105,7 @@
     <Content Include="wctk\Scripts\jquery-2.1.4.min.js" />
     <Content Include="wctk\Scripts\knockout-3.3.0.js" />
     <Content Include="wctk\Scripts\ViewModels\SupportCounter.js" />
+    <Content Include="wctk\Styles\content.css" />
     <Content Include="wctk\Styles\nika-slider.css" />
     <Content Include="wctk\Scripts\nika-slider.js" />
     <Content Include="wctk\Styles\bootstrap-datepicker.css" />
@@ -163,6 +164,7 @@
     <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="wctk\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="wctk\Styles\content.less" />
     <None Include="wctk\Views\_NavbarLinks.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
