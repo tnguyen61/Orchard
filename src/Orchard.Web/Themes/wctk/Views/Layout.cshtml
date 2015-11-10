@@ -37,22 +37,6 @@
             s.parentNode.insertBefore(ga, s);
         })();
     </script>*@
-<script>
-    function runSearch() {
-        window.location = 'Search?culture=en-US&q=' + encodeURIComponent($('#main-search').val());
-    }
-    $(function () {
-        $('#main-search').keydown(function (event) {
-            if (event.keyCode == 13) {
-                runSearch();
-            }
-        });
-
-        $('#main-search-button').click(function (event) {
-            runSearch();
-        });
-    });
-</script>
 
 <div class="container-fluid">
     <div class="col-md-4">
@@ -61,20 +45,6 @@
         </a>
     </div>
     <div class="col-md-8">
-        <div class="row row-search">
-            <div class="col-md-offset-7 col-md-5 col-xs-offset-0 col-xs-12">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input id="main-search" type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button id="main-search-button" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xs-12">
                 <div id="main-nav" class="navbar navbar-inverse hidden-print" role="navigation">
