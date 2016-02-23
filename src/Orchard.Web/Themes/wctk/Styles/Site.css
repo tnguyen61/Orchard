@@ -24,6 +24,24 @@ body {
   color: #3f4c6b;
   text-align: right;
 }
+
+#body-footer
+{
+	background-image: linear-gradient(#c9c9c9, #ffffff 30%);
+	background-color: #c9c9c9;
+	padding: 10px;
+	margin: 0;
+	color: #3f4c6b;
+	text-align: right;
+}
+
+#body-footer p
+{
+	margin: 0 auto;
+	text-align: center;
+	background-color: transparent;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -233,7 +251,7 @@ h3 {
 }
 .side-nav li {
   height: 30px;
-  ddisplay: block;
+  display: block;
 }
 .side-nav li.active > a {
   text-decoration: none;
@@ -557,3 +575,77 @@ table .btn-group .btn {
   display: inline-block;
   margin: 0px;
 }
+
+/*
+    Add new button type so we don't collide 
+    with Bootstrap modifications made by NBI.
+
+    DHN, 1/27/2016
+*/
+
+.btn-register {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.btn-register:active,
+.btn-register.active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.btn-register .badge {
+  text-shadow: none;
+}
+
+.btn-register {
+  background-image: -webkit-linear-gradient(top, #5cb85c 0%, #419641 100%);
+  background-image:      -o-linear-gradient(top, #5cb85c 0%, #419641 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5cb85c), to(#419641));
+  background-image:         linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #3e8f3e;
+}
+
+.btn-register:hover,
+.btn-register:focus {
+  background-color: #5cb85c;
+  background-position: 0 -15px;
+}
+
+.btn-register:active,
+.btn-register.active {
+  background-color: #419641;
+  border-color: #3e8f3e;
+}
+
+.btn-register.disabled,
+.btn-register:disabled,
+.btn-register[disabled] {
+  background-color: #419641;
+  background-image: none;
+}
+
+.btn-register > li > a
+.btn-register > li > a:hover, 
+.btn-register > li > a:focus
+{
+    background-image: linear-gradient(#5cb85c, #419641);
+    background-color: #5cb85c;
+}
+
+/* Vertical gradient lines */
+.vert-border:after
+{
+  display:block;
+  content:"";
+  margin-top:10px;
+  border-top:1px solid rgba(0, 0, 0, 0.3);
+  width:100%;
+  height:6px;
+  background: radial-gradient(ellipse at 50% -100%, rgba(0,0,0,0.6) 0,rgba(255,255,255,0) 70%); /* W3C */
+}
+

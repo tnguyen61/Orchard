@@ -4,17 +4,27 @@
     Script.Include("bootstrap.min.js").AtHead();
     Script.Include("knockout-3.3.0.js").AtHead();
     Script.Include("nika-slider.js").AtHead();
+    Script.Include("nika-thumbnail-slider.js").AtHead();
     Script.Include("ViewModels/SupportCounter.js").AtHead();
-    Style.Include("nika-slider.css").AtHead();
-    Style.Include("bootstrap/bootstrap.css").AtHead();
     Style.Include("font-awesome.css").AtHead();
+    Style.Include("bootstrap/bootstrap.css").AtHead();
+    /*    Style.Include("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").AtHead(); */
+    Style.Include("nika-slider.css").AtHead();
+    Style.Include("nika-thumbnail-slider.css").AtHead();
     Style.Include("site.css").AtHead();
-    Style.Include("content.css").AtHead();
+    /*    Style.Include("content.css").AtHead(); */
 }
+
+@{
+    var basePath = "https://wcftoolkitdev.nika-ae.com";
+    var basePathHome = "https://home.wcftoolkitdev.nika-ae.com";
+}
+
 <script>
     function runSearch() {
         window.location = 'Search?culture=en-US&q=' + encodeURIComponent($('#main-search').val());
     }
+
     $(function () {
         $('#main-search').keydown(function (event) {
             if (event.keyCode == 13) {
@@ -26,38 +36,107 @@
             runSearch();
         });
     });
+
+	$(document).ready(function()
+	{
+		var intId;
+		var delta;
+
+		$('#btn-close').on('click', function(event) 
+		{
+			delta = 500;
+			event.preventDefault(); // To prevent following the link (optional)
+			$('#sliderFrame').css({"overflow-y":"hidden"});
+			$("#sliderFrame").css({"height":"300px"});
+			$("#slider-ctrl").css({"margin-top":"-20px"});
+			$("#wcftk-heading").css({"bottom":"0px"});
+//			intId = setInterval(slider_update(0), 10) // draw every 10ms 
+		});	
+
+		$('#btn-open').on('click', function(event) 
+		{
+			delta = 500;
+			event.preventDefault(); // To prevent following the link (optional)
+			$("#sliderFrame").css({"height":"750px"});
+			$('#sliderFrame').css({"overflow-y":"show"});
+			$("#slider-ctrl").css({"margin-top":"-50px"});
+			$("#wcftk-heading").css({"bottom":"30px"});
+//			intId = setInterval(slider_update(1), 10) // draw every 10ms 
+		});
+
+		function slider_update(dir)
+		{
+			var start = document.getElementById("slider").offsetHeight;
+
+			while (delta > 0)
+			{
+				if (dir==1)
+					start++;
+				else
+					start--;
+
+				delta--;
+
+				document.getElementById("slider").style.height = start + 'px' // show frame  
+			}
+
+			clearInterval(intId) 
+		}
+	});
+
 </script>
 
-<div class="container-fluid">
-    <div class="col-md-4">
-        <a href='/'>
-            <img src="~/Themes/wctk/Styles/images/CIDM/logo_lrg.jpg" />
-        </a>
-    </div>
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="main-nav" class="navbar navbar-inverse hidden-print" role="navigation">
-                    <div class="navbar-header">
+<div class="container-fluid body-content-container col-sm-12">
+    <div class="row" style="margin:0 auto; max-width:1280px; ">
+        <div class="col-sm-1 hidden-xs" style="min-width:100px;">
+            <a href='@Url.Action("Index", "Home", new { area = "" })' class="">
+                <img alt="Military Health Systems" src="~/Themes/wctk/Styles/images/mhs-emblem_120x120.png" style="height:90px; width:90px;" />
+            </a>
+        </div>
+		
+        <div class="col-sm-11"">
+            <div class="row" style="margin:0;">
+                <div class="col-sm-7 pull-left hidden-xs" style="padding-bottom:8px;">
+                    <a href='@Url.Action("Index", "Home", new { area = "" })' style="color:black; float:left;">
+                        <span style="display:inline-block; font:900 26px verdana,helvetica,sans-serif; vertical-align:-5px;">World-Class Facilities&nbsp;</span>
+                        <img src="/Themes/wctk/Styles/images/mhs-tag.png" style="height:20px; width:auto;" />
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-5 pull-right" style="padding-bottom:8px;">
+                    <form class="navbar-form navbar-right col-xs-12" role="search" action="@string.Format("{0}{1}", basePath, "/Repository/Search")">
+                        <div class="form-group pull-right">
+                            <input type="text" class="form-control" placeholder="Search for..." name="SearchParameters" id="searchTxt">
+                            &nbsp;<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <nav class="navbar navbar-inverse">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                            </a>
+                        </div>
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="fa fa-bars"></span>
                             <span>Main Menu</span>
                         </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="main-navbar-collapse">
-                        @Html.Partial("_NavbarLinks")
-                    </div>
+                        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+                            @Html.Partial("_NavbarLinks")
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid body-content-container">
-    @Display(Model.Navigation)
-    <div class="body-content" style="position:relative">
-        @Display(Model.Content)
-    </div>
+
+<div class="row col-sm-12">
+    @{ /* Display(Model.Navigation) */ }
+    @Display(Model.Content)
+</div>
+
+<div class="row col-sm-12">
     <footer id="body-footer">
         <p>
             <a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a> |
@@ -68,3 +147,4 @@
         </p>
     </footer>
 </div>
+

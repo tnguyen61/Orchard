@@ -1,46 +1,102 @@
 ﻿@using ToolkitPath
 @{
     var isLoggedIn = Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity;
+
+    var basePath = "https://wcftoolkitdev.nika-ae.com";
+    var basePathHome = "https://home.wcftoolkitdev.nika-ae.com";
 }
 <ul class="nav navbar-nav">
     <li id="nav-home"><a href="/">Home</a></li>
     <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Knowledge Center<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
-            <li><a href="@Html.ToolkitPath("/repository")">Resources/Documents</a></li>
+            <li><a href=@string.Format("{0}{1}", basePath, "/repository")>Overview</a></li>
+            <li><a href="@string.Format("{0}{1}", basePath, "/repository")">Resources/Documents</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/case-studies")">Case Studies</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/design-guidelines")">Design Guidelines, Criteria &amp; Policy</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/post-occupancy-evaluations")">Post-Occupancy Evaluation</a></li>
+            <li class="menu-item dropdown dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Topics</b></a>
+                <ul class="dropdown-menu multi-level">
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/bim-training-videos")">BIM Training Videos</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/bim-for-the-mhs")">Building Information Modeling (BIM)</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/contracting-dha-facilities-division")">Contracting DHA Facilities Division</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/contracting-nibs")">Contracting-NIBS</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/contracting-nibs-pdtsummit")">Contracting-NIBS-PDTSummit</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/cpb")">CPB - Capital Planning Branch</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/DMLSS-FM-Video-Training")">Defense Medical Logistics Standard Support - Training Videos</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/energy-management-sustainability-in-the-mhs")">Energy Management & Sustainability in the MHS</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/executive-knowledge-views")">Executive Knowledge Views</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/facility-life-cycle-management-flcm")">Facility Life Cycle Management (FLCM)</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/facility-management-operations-fm-ops-landing-page")">Facility Management Operations (FM Ops) Landing Page</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/knowledge-center-topic-areas-wc-governing-organizations")">Knowledge Center – Topic Areas – WC Governing Organizations</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-and-va-facility-maps")">MHS and VA Facility Maps</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-builder-implementation")">MHS BUILDER Implementation</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-facilities-about-ppmd")">MHS Facilities – About PPMD</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-facilities-admin-support-pages-ppmd")">MHS Facilities – Admin Support Pages PPMD</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-quadruple-aim")">MHS Quadruple Aim</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-guiding-principles")">Military Health System Guiding Principles</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/military-health-system-research")">Military Health System Research</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mpbb")">MPBB - MILCON Program & Budget Branch</a></li>
+                </ul>
+            </li>
         </ul>
-    </li>
     <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">World-Class ToolKit<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
-            <li><a href="/case-studies">Case Studies</a></li>
+            <li class="menu-item dropdown dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>World Class Checklist</b></a>
+                <ul class="dropdown-menu multi-level">
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/Checklist")" class="dropdown-toggle" role="button" aria-expanded="true">Checklist Landing</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/checklist/viewall")">Browse Checklists</a></li>
+                    <li role="presentation" class="dropdown-header">Reports</li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/Checklist/Strategy")">Strategy Info</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/Checklist/StrategyReport")">Strategy Report</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/Checklist/ChecklistPDF")">Checklist Printout</a></li>
+                </ul>
+            </li>
+
             @if (isLoggedIn)
             {
-                <li><a href="@Html.ToolkitPath("/CIDM")">CIDM</a></li>
+                <li class="menu-item dropdown dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CIDM</b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@string.Format("{0}{1}", basePath, "/CIDM")" class="dropdown-toggle" role="button" aria-expanded="true">CIDM Landing</a>
+
+                        <li><a href="@string.Format("{0}{1}", basePath, "/CIDM/Events")">CIDM Events</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/CIDM/Artifacts")">Artifact Designer</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/CIDM/History")">CIDM Archive</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item dropdown dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Project Tool</b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@string.Format("{0}{1}", basePath, "/Project")" class="dropdown-toggle" role="button" aria-expanded="false">Projects Landing</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/project/viewall")">View Projects</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateFacility")">Create Facility Project</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateContract")">Create Contract Project</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/ProjectTeam/ByTeam")">Manage Project Teams</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/ProjectTeam/ByUser")">Manage User Teams</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePath, "/Repository/Projects")">View/Edit Documents</a></li>
+                    </ul>
+                </li>
             }
-            <li><a href="/design-guidelines">Design Guidelines, Criteria &amp; Policy</a></li>
-            <li><a href="/post-occupancy-evaluations">Post-Occupancy Evaluation</a></li>
-            @if (isLoggedIn)
-            {
-                <li><a href="@Html.ToolkitPath("/project")">Project Tool</a></li>
-            }
-            <li><a href="@Html.ToolkitPath("/checklist")">World-Class Checklist</a></li>
-            <li><a href="/world-class-checklist-reports">World-Class Checklist Reports</a></li>
         </ul>
     </li>
-    <li><a href="@Html.ToolkitPath("/Repository/Download/15004")">Executive Dashboard</a></li>
+    <li><a href="@string.Format(" {0}{1}", basePathHome, "/mhs-facilities-analytics-dashboard" )">Analytics</a></li>
     <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
-            <li><a href="@Html.ToolkitPath("/Support/Contact")">Contact Support</a></li>
-            <li><a href="/frequently-asked-questions">Frequently Asked Questions</a></li>
-            <li><a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a></li>
-            <li><a href="/how-to-use-this-site">How To Use This Site</a></li>
-            <li><a href="/support-availability">Support Availability</a></li>
+            <li><a href="@string.Format(" {0}{1}", basePathHome, "/frequently-asked-questions")">Frequently Asked Questions</a></li>
+            <li><a href="@string.Format(" {0}{1}", basePathHome, "/website-notices-policies-disclaimers")">Website Notices, Policies &amp; Disclaimers</a></li>
+            <li><a href="@string.Format(" {0}{1}", basePathHome, "/how-to-use-this-site")">How To Use This Site</a></li>
+            <li><a href="@string.Format(" {0}{1}", basePathHome, "/support-availability")">Support Availability</a></li>
         </ul>
     </li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
+    <li><a href="@string.Format("{0}{1}", basePath, "/Support/Contact")">Contact Support</a></li>
     @if (isLoggedIn)
     {
         var Claims = new List
@@ -48,7 +104,7 @@
             ((User.Identity as System.Security.Principal.GenericIdentity).Claims);
         if (Claims[2].Value == "True")
         {
-            <li id="ticket-counter" target="@Html.ToolkitPath("/Support/TicketSummaryJsonp")">
+            <li id="ticket-counter" target="@string.Format("{0}{1}", basePath, "/Support/TicketSummaryJsonp")">
                 <a href="@Html.ToolkitPath("/Support/Tickets")">
                     <i class="fa fa-fw fa-envelope"></i>
                     <span class="badge" data-bind="text: newMessages"></span>
@@ -56,38 +112,54 @@
             </li>
         }
         <li>
-            <a href="@Html.ToolkitPath("/Account")">@(Claims[1].Value)</a>
+            <a href="@string.Format("{0}{1}", basePath, "/Account")">@(Claims[1].Value)</a>
         </li>
 
         if (Claims[2].Value == "True")
         {
             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class=""></b></a>
                 <ul class="dropdown-menu multi-level">
-                    <li><a href="@Html.ToolkitPath("/Admin")">View Users</a></li>
-                    <li><a href="@Html.ToolkitPath("/Admin/Compose")">Compose Email</a></li>
-                    <li><a href="@Html.ToolkitPath("/Admin/SupportEmail")">Update Email</a></li>
-                    <li><a href="@Html.ToolkitPath("/Admin/Reindex")">Rebuild Document Index</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Admin")">View Users</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Admin/Compose")">Compose Email</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Admin/SupportEmail")">Update Email</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Admin/Reindex")">Rebuild Document Index</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Lookup/OrgType")">Lookups</a></li>
                     @if (Claims[3].Value == "True")
                     {
-                        <li><a href="/admin">CMS Settings</a></li>
+                        <li><a href="@string.Format("{0}{1}", basePathHome, "/admin")">CMS Settings</a></li>
                     }
+                    <li class="menu-item dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Reports</b></a>
+                        <ul class="dropdown-menu multi-level">
+                            <li role="separator" class="divider"><b>ADMIN REPORTS</b></li>
+                            <li><a href="@string.Format("{0}{1}", basePath, "/Report/Activity")">Activity Report</a></li>
+                            <li><a href="@string.Format("{0}{1}", basePath, "/Report/Errors")">Error Report</a></li>
+                            <li><a href="@string.Format("{0}{1}", basePath, "/Report/Email")">Email Report</a></li>
+                            <li><a href="@string.Format("{0}{1}", basePath, "/Support/Tickets")">Support Ticket Report&nbsp;</a></li>
+                            <li role="separator" class="divider"><b>KNOWLEDGE CENTER REPORTS REPORTS</b></li>
+
+                        </ul>
+                    </li>
                 </ul>
             </li>
         }
         else if (Claims[3].Value == "True")
         {
-            <li><a href="/admin">CMS Settings</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/admin")">CMS Settings</a></li>
         }
 
-        <li>
+        <li class="btn btn-primary btn-xs">
             <a href="~/Users/Account/Logoff">Log Off</a>
         </li>
     }
     else
     {
-        <li>
-            <a href="~/Users/Account/LogOn">Log In</a>
+        <li class="btn btn-primary btn-xs">
+            <a href="~/Users/Account/LogOn">Sign In</a>
+        </li>
+        <li class="btn btn-register btn-xs">
+            <a href="~/Users/Account/LogOn">Request Access</a>
         </li>
     }
 </ul>

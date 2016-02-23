@@ -5,7 +5,7 @@
       <Place Parts_Tags_ShowTags="-"/>
     </Match>
   </Match>
-  <Match Path="/">
+  <Match Path="/*">
     <Place Parts_Common_Metadata="-"/>
     <Place Parts_Title="-"/>
   </Match>
