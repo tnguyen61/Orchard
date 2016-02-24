@@ -1,9 +1,10 @@
 ﻿@using ToolkitPath
+@using Orchard.Environment.Configuration;
 @{
     var isLoggedIn = Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity;
-
-    var basePath = "https://wcftoolkitdev.nika-ae.com";
-    var basePathHome = "https://home.wcftoolkitdev.nika-ae.com";
+    var appConfigAccessor = new AppConfigurationAccessor();
+    var basePath = appConfigAccessor.GetConfiguration("ToolkitBasePath");
+    var basePathHome = appConfigAccessor.GetConfiguration("ToolkitBasePathHome");
 }
 <ul class="nav navbar-nav">
     <li id="nav-home"><a href="/">Home</a></li>

@@ -1,3 +1,4 @@
+@using Orchard.Environment.Configuration;
 @{
     Script.Require("ShapesBase");
     Script.Include("jquery-2.1.4.min.js").AtHead();
@@ -16,8 +17,9 @@
 }
 
 @{
-    var basePath = "https://wcftoolkitdev.nika-ae.com";
-    var basePathHome = "https://home.wcftoolkitdev.nika-ae.com";
+    var appConfigAccessor = new AppConfigurationAccessor();
+    var basePath = appConfigAccessor.GetConfiguration("ToolkitBasePath");
+    var basePathHome = appConfigAccessor.GetConfiguration("ToolkitBasePathHome");
 }
 
 <script>

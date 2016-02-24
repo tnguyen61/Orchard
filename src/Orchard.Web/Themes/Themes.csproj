@@ -167,6 +167,7 @@
     <Content Include="wctk\Styles\content.less" />
     <Content Include="wctk\Views\Content.Summary.cshtml" />
     <Content Include="wctk\Views\Parts.Layout.Summary.cshtml" />
+    <None Include="Properties\PublishProfiles\OrchardDeploy2-23-16.pubxml" />
     <None Include="wctk\Views\_NavbarLinks.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
