@@ -39,65 +39,60 @@
         });
     });
 
-	$(document).ready(function()
-	{
-		var intId;
-		var delta;
+    $(document).ready(function () {
+        var intId;
+        var delta;
 
-		$('#btn-close').on('click', function(event) 
-		{
-			delta = 500;
-			event.preventDefault(); // To prevent following the link (optional)
-			$('#sliderFrame').css({"overflow-y":"hidden"});
-			$("#sliderFrame").css({"height":"300px"});
-			$("#slider-ctrl").css({"margin-top":"-20px"});
-			$("#wcftk-heading").css({"bottom":"0px"});
-//			intId = setInterval(slider_update(0), 10) // draw every 10ms 
-		});	
+        $('#btn-close').on('click', function (event) {
+            delta = 500;
+            event.preventDefault(); // To prevent following the link (optional)
+            $('#sliderFrame').css({ "overflow-y": "hidden" });
+            $("#sliderFrame").css({ "height": "300px" });
+            $("#slider-ctrl").css({ "margin-top": "-20px" });
+            $("#wcftk-heading").css({ "bottom": "0px" });
+            //			intId = setInterval(slider_update(0), 10) // draw every 10ms
+        });
 
-		$('#btn-open').on('click', function(event) 
-		{
-			delta = 500;
-			event.preventDefault(); // To prevent following the link (optional)
-			$("#sliderFrame").css({"height":"750px"});
-			$('#sliderFrame').css({"overflow-y":"show"});
-			$("#slider-ctrl").css({"margin-top":"-50px"});
-			$("#wcftk-heading").css({"bottom":"30px"});
-//			intId = setInterval(slider_update(1), 10) // draw every 10ms 
-		});
+        $('#btn-open').on('click', function (event) {
+            delta = 500;
+            event.preventDefault(); // To prevent following the link (optional)
+            $("#sliderFrame").css({ "height": "750px" });
+            $('#sliderFrame').css({ "overflow-y": "show" });
+            $("#slider-ctrl").css({ "margin-top": "-50px" });
+            $("#wcftk-heading").css({ "bottom": "30px" });
+            //			intId = setInterval(slider_update(1), 10) // draw every 10ms
+        });
 
-		function slider_update(dir)
-		{
-			var start = document.getElementById("slider").offsetHeight;
+        function slider_update(dir) {
+            var start = document.getElementById("slider").offsetHeight;
 
-			while (delta > 0)
-			{
-				if (dir==1)
-					start++;
-				else
-					start--;
+            while (delta > 0) {
+                if (dir == 1)
+                    start++;
+                else
+                    start--;
 
-				delta--;
+                delta--;
 
-				document.getElementById("slider").style.height = start + 'px' // show frame  
-			}
+                document.getElementById("slider").style.height = start + 'px' // show frame
+            }
 
-			clearInterval(intId) 
-		}
-	});
+            clearInterval(intId)
+        }
+    });
 
 </script>
 
-<div class="container-fluid body-content-container col-sm-12">
-    <div class="row" style="margin:0 auto; max-width:1280px; ">
+<div class="container-fluid body-content-container" style="margin:0 auto; max-width:1280px;">
+    <div class="row" style="margin-bottom:20px;">
         <div class="col-sm-1 hidden-xs" style="min-width:100px;">
             <a href='@Url.Action("Index", "Home", new { area = "" })' class="">
                 <img alt="Military Health Systems" src="~/Themes/wctk/Styles/images/mhs-emblem_120x120.png" style="height:90px; width:90px;" />
             </a>
         </div>
-		
-        <div class="col-sm-11"">
-            <div class="row" style="margin:0;">
+
+        <div class="col-sm-11">
+            <div class=" row" style="margin:0;">
                 <div class="col-sm-7 pull-left hidden-xs" style="padding-bottom:8px;">
                     <a href='@Url.Action("Index", "Home", new { area = "" })' style="color:black; float:left;">
                         <span style="display:inline-block; font:900 26px verdana,helvetica,sans-serif; vertical-align:-5px;">World-Class Facilities&nbsp;</span>
@@ -133,7 +128,7 @@
     </div>
 </div>
 
-<div class="row col-sm-12">
+<div class="row">
     @{ /* Display(Model.Navigation) */ }
     @Display(Model.Content)
 </div>

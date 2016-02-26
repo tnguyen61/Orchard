@@ -12,6 +12,8 @@ body {
   padding: 10px;
   margin-bottom: 5ex;
   background: #fff;
+  width: 1280px;
+  margin: 0 auto; 
 }
 .body-content-container footer.body-footer {
   padding-top: 0.6em;
