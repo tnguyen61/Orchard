@@ -100,7 +100,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-sm-5 pull-right" style="padding-bottom:8px;">
-                    <form class="navbar-form navbar-right col-xs-12" role="search" action="@string.Format("{0}{1}", basePath, "/Repository/Search")">
+                    <form class="navbar-form navbar-right col-xs-12" role="search" action="@string.Format("{0}{1}", basePath, "/repository/Search")">
                         <div class="form-group pull-right">
                             <input type="text" class="form-control" placeholder="Search for..." name="SearchParameters" id="searchTxt">
                             &nbsp;<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -128,7 +128,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin:0 auto; max-width:1280px;">
     @{ /* Display(Model.Navigation) */ }
     @Display(Model.Content)
 </div>
