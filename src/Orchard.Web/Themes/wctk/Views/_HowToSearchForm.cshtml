@@ -1,0 +1,129 @@
+﻿<div class="modal fade" id="searchGuideModal">
+    <div class="modal-dialog modal-lg" style="width:80%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Using the Content Search Function</h3>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4>Searching by Terms</h4>
+                                <p>
+                                    To find a term type it in the content box.<br />
+                                    To find multiple terms type in each term.<br />
+                                    To find a phrase add quotation marks around it.
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Goal</th>
+                                                <th>Example Search Text</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>To find a term</td>
+                                            <td>Facility</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To find multiple terms</td>
+                                            <td>Facility Project Management</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To find exact phrase</td>
+                                            <td>"Facility Project Management"</td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            </td>
+                            <td>
+                                <h4>Boolean Searches</h4>
+                                <p>
+                                    <strong>Note: AND, OR must be in uppercase!</strong>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Goal</th>
+                                                <th>Example Search Text</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>To find at least one of the terms</td>
+                                            <td>Facility OR Project OR Manage</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To find all the terms</td>
+                                            <td>Facility AND Project AND Manage</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To find 2 or more terms and possibly another</td>
+                                            <td>(Facility OR Project) AND Manage</td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Fuzzy Searches with Wildcards</h4>
+                                <p>
+                                    The ‘?’ wildcard looks for single character matches.<br />
+                                    The ‘*’ wildcard looks for multiple character matches.<br />
+                                    <strong>Note: Do not use wildcards at the beginning of a search term</strong>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Goal</th>
+                                                <th>Example Search Text</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>To search for "text" or "test"</td>
+                                            <td>te?t</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To search for test, tests or tester</td>
+                                            <td>test*</td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            </td>
+                            <td>
+                                <h4>Very Fuzzy Searches</h4>
+                                <p>
+                                    The ‘~’ symbol looks for "sort-of-alike" terms.
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Goal</th>
+                                                <th>Example Search Text</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>Find documents including Department, partnering, departure</td>
+                                            <td>Partner~</td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <p class="text-center">
+                                    <a href="/Resource/Download/20843">Link to Resource</a> |
+                                    For more information on the search engine: <a href="https://lucene.apache.org/">Apache Lucene</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

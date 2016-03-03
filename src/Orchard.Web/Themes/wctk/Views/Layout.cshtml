@@ -1,4 +1,3 @@
-@using Orchard.Environment.Configuration;
 @{
     Script.Require("ShapesBase");
     Script.Include("jquery-2.1.4.min.js").AtHead();
@@ -14,12 +13,16 @@
     Style.Include("nika-thumbnail-slider.css").AtHead();
     Style.Include("site.css").AtHead();
     /*    Style.Include("content.css").AtHead(); */
+
+    /* Useful shortcuts or settings
+    ***************************************************************/
+    Func<dynamic, dynamic> Zone = x => Display(x); // Zone as an alias for Display to help make it obvious when we're displaying zones
 }
 
 @{
-    var appConfigAccessor = new AppConfigurationAccessor();
-    var basePath = appConfigAccessor.GetConfiguration("ToolkitBasePath");
-    var basePathHome = appConfigAccessor.GetConfiguration("ToolkitBasePathHome");
+    var basePath = "https://wcftoolkitdev.nika-ae.com";
+    var basePathHome = "https://home.wcftoolkitdev.nika-ae.com";
+    var docTitle = Model.ContentItem.WidgetPart.Title;
 }
 
 <script>
@@ -40,51 +43,69 @@
     });
 
     $(document).ready(function () {
+        var sliderState = "";
+
         var intId;
-        var delta;
+
+        var stateText = "sliderState";
+
+        sliderState = getCookie(stateText, "open");
+
+        if (sliderState == "closed")
+            $('#btn-close').click();
+        else
+            $('#btn-open').click();
 
         $('#btn-close').on('click', function (event) {
             delta = 500;
-            event.preventDefault(); // To prevent following the link (optional)
+            // event.preventDefault(); // To prevent following the link (optional)
             $('#sliderFrame').css({ "overflow-y": "hidden" });
             $("#sliderFrame").css({ "height": "300px" });
             $("#slider-ctrl").css({ "margin-top": "-20px" });
             $("#wcftk-heading").css({ "bottom": "0px" });
-            //			intId = setInterval(slider_update(0), 10) // draw every 10ms
+
+            setCookie(stateText, "closed", 180);
         });
 
         $('#btn-open').on('click', function (event) {
             delta = 500;
-            event.preventDefault(); // To prevent following the link (optional)
+            // event.preventDefault(); // To prevent following the link (optional)
             $("#sliderFrame").css({ "height": "750px" });
             $('#sliderFrame').css({ "overflow-y": "show" });
             $("#slider-ctrl").css({ "margin-top": "-50px" });
             $("#wcftk-heading").css({ "bottom": "30px" });
-            //			intId = setInterval(slider_update(1), 10) // draw every 10ms
+
+            setCookie(stateText, "open", 180);
         });
 
-        function slider_update(dir) {
-            var start = document.getElementById("slider").offsetHeight;
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
 
-            while (delta > 0) {
-                if (dir == 1)
-                    start++;
-                else
-                    start--;
+        function getCookie(cname, dflt) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
 
-                delta--;
-
-                document.getElementById("slider").style.height = start + 'px' // show frame
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ')
+                    c = c.substring(1);
+                if (c.indexOf(name) == 0)
+                    return c.substring(name.length, c.length);
             }
-
-            clearInterval(intId)
+            if (!dflt)
+                return dflt;
+            else
+                return "";
         }
     });
-
 </script>
 
 <div class="container-fluid body-content-container" style="margin:0 auto; max-width:1280px;">
-    <div class="row" style="margin-bottom:20px;">
+    <div class="row" style="margin:0 auto 20px auto;">
         <div class="col-sm-1 hidden-xs" style="min-width:100px;">
             <a href='@Url.Action("Index", "Home", new { area = "" })' class="">
                 <img alt="Military Health Systems" src="~/Themes/wctk/Styles/images/mhs-emblem_120x120.png" style="height:90px; width:90px;" />
@@ -92,7 +113,7 @@
         </div>
 
         <div class="col-sm-11">
-            <div class=" row" style="margin:0;">
+            <div class="row" style="margin:0;">
                 <div class="col-sm-7 pull-left hidden-xs" style="padding-bottom:8px;">
                     <a href='@Url.Action("Index", "Home", new { area = "" })' style="color:black; float:left;">
                         <span style="display:inline-block; font:900 26px verdana,helvetica,sans-serif; vertical-align:-5px;">World-Class Facilities&nbsp;</span>
@@ -100,10 +121,11 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-sm-5 pull-right" style="padding-bottom:8px;">
-                    <form class="navbar-form navbar-right col-xs-12" role="search" action="@string.Format("{0}{1}", basePath, "/repository/Search")">
+                    <form class="navbar-form navbar-right col-xs-12" role="search" action="@string.Format("{0}{1}", basePath, "/Repository/Search")">
                         <div class="form-group pull-right">
                             <input type="text" class="form-control" placeholder="Search for..." name="SearchParameters" id="searchTxt">
                             &nbsp;<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            @Html.Partial("_HowToSearchBtn")
                         </div>
                     </form>
                 </div>
@@ -126,22 +148,23 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row" style="margin:0 auto; max-width:1280px;">
-    @{ /* Display(Model.Navigation) */ }
-    @Display(Model.Content)
-</div>
+    <div class="row" style="margin:0 auto; max-width:1280px;">
 
-<div class="row col-sm-12">
-    <footer id="body-footer">
-        <p>
-            <a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a> |
-            <a href="/document-posting-restrictions">Document Posting Restrictions</a> |
-            <a href="http://health.mil/Military-Health-Topics/Privacy-and-Civil-Liberties">FOIA</a> |
-            <a href="/sitemap">Site Map</a> |
-            <a href="/contact-us">Contact Us</a>
-        </p>
-    </footer>
-</div>
+        @{ /* Display(Model.Navigation) */ }
+        @Display(Model.Content)
+    </div>
 
+    <div class="row col-sm-12">
+        <footer id="body-footer">
+            <p>
+                <a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a> |
+                <a href="/document-posting-restrictions">Document Posting Restrictions</a> |
+                <a href="http://health.mil/Military-Health-Topics/Privacy-and-Civil-Liberties">FOIA</a> |
+                <a href="/sitemap">Site Map</a> |
+                <a href="/contact-us">Contact Us</a>
+            </p>
+        </footer>
+    </div>
+</div>
+@Html.Partial("_HowToSearchForm")
