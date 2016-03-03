@@ -42,23 +42,32 @@
         });
     });
 
-    $(document).ready(function () {
-        var sliderState = "";
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
 
-        var intId;
+    function getCookie(cname, dflt) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
 
-        var stateText = "sliderState";
-
-        sliderState = getCookie(stateText, "open");
-
-        if (sliderState == "closed")
-            $('#btn-close').click();
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ')
+                c = c.substring(1);
+            if (c.indexOf(name) == 0)
+                return c.substring(name.length, c.length);
+        }
+        if (!dflt)
+            return dflt;
         else
-            $('#btn-open').click();
+            return "";
+    }
 
+    $(document).ready(function () {
         $('#btn-close').on('click', function (event) {
-            delta = 500;
-            // event.preventDefault(); // To prevent following the link (optional)
             $('#sliderFrame').css({ "overflow-y": "hidden" });
             $("#sliderFrame").css({ "height": "300px" });
             $("#slider-ctrl").css({ "margin-top": "-20px" });
@@ -68,8 +77,6 @@
         });
 
         $('#btn-open').on('click', function (event) {
-            delta = 500;
-            // event.preventDefault(); // To prevent following the link (optional)
             $("#sliderFrame").css({ "height": "750px" });
             $('#sliderFrame').css({ "overflow-y": "show" });
             $("#slider-ctrl").css({ "margin-top": "-50px" });
@@ -78,28 +85,17 @@
             setCookie(stateText, "open", 180);
         });
 
-        function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
+        var sliderState = "";
+
+        var stateText = "sliderState";
+
+        sliderState = getCookie(stateText, "open");
+
+        if (sliderState == "closed") {
+            $('#btn-close').click();
         }
-
-        function getCookie(cname, dflt) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ')
-                    c = c.substring(1);
-                if (c.indexOf(name) == 0)
-                    return c.substring(name.length, c.length);
-            }
-            if (!dflt)
-                return dflt;
-            else
-                return "";
+        else {
+            $('#btn-open').click();
         }
     });
 </script>
