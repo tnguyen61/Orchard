@@ -21,10 +21,6 @@
 }
 
 @{
-//    var basePath = "https://wcftoolkitdev.nika-ae.com";
-//    var basePathHome = "https://home.wcftoolkitdev.nika-ae.com";
-//    var docTitle = Model.ContentItem.WidgetPart.Title;
-
     var appConfigAccessor = new AppConfigurationAccessor();
     var basePath = appConfigAccessor.GetConfiguration("ToolkitBasePath");
     var basePathHome = appConfigAccessor.GetConfiguration("ToolkitBasePathHome");
@@ -158,12 +154,12 @@
 
     <div class="row col-sm-12">
         <footer id="body-footer">
-            <p>
-                <a href="/website-notices-policies-disclaimers">Website Notices, Policies &amp; Disclaimers</a> |
-                <a href="/document-posting-restrictions">Document Posting Restrictions</a> |
+			<p>
+                <a href="@String.Format("{0}{1}", basePathHome, "/website-notices-policies-disclaimers")">Website Notices, Policies &amp; Disclaimers</a> |
+                <a href="@String.Format("{0}{1}", basePathHome, "/document-posting-restrictions")">Document Posting Restrictions</a> |
                 <a href="http://health.mil/Military-Health-Topics/Privacy-and-Civil-Liberties">FOIA</a> |
-                <a href="/sitemap">Site Map</a> |
-                <a href="/contact-us">Contact Us</a>
+                <a href="@String.Format("{0}{1}", basePathHome, "/sitemap")">Site Map</a> |
+                <a href="@String.Format("{0}{1}", basePath, "/Support/Contact")">Contact Support</a>
             </p>
         </footer>
     </div>
