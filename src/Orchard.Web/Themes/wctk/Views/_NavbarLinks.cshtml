@@ -152,16 +152,16 @@
         }
 
         <li class="btn btn-primary btn-xs">
-            <a href="@string.Format("{0}{1}", basePath, "/Users/Account/Logoff")">Log Off</a>
+            <a href="@string.Format("{0}{1}", basePathHome, "/Users/Account/Logoff")">Log Off</a>
         </li>
     }
     else
     {
         <li class="btn btn-primary btn-xs">
-            <a href="@string.Format("{0}{1}", basePath, "/Users/Account/LogOn")">Sign In</a>
+            <a href="@string.Format("{0}{1}", basePathHome, "/Users/Account/LogOn")">Sign In</a>
         </li>
         <li class="btn btn-register btn-xs">
-            <a href="@string.Format("{0}{1}", basePathHome, "/Users/Account/LogOn")">Request Access</a>
+            <a href="@string.Format("{0}{1}", basePathHome, "/registration-instructions")">Request Access</a>
         </li>
     }
 </ul>
