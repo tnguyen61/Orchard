@@ -43,8 +43,8 @@
                 </ul>
             </li>
 
-            @if (isLoggedIn)
-            {
+            @*@if (isLoggedIn)
+            {*@
                 <li class="menu-item dropdown dropdown-submenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>CIDM</b></a>
                     <ul class="dropdown-menu">
@@ -68,7 +68,7 @@
                         <li><a href="@string.Format("{0}{1}", basePath, "/Repository/Projects")">View/Edit Documents</a></li>
                     </ul>
                 </li>
-            }
+            @*}*@
         </ul>
     </li>
     <li><a href="@string.Format(" {0}{1}", basePathHome, "/mhs-facilities-analytics-dashboard" )">Analytics</a></li>
