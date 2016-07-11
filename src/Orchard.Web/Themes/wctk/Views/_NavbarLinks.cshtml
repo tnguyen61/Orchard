@@ -81,9 +81,10 @@
             <li><a href="@string.Format(" {0}{1}", basePathHome, "/support-availability")">Support Availability</a></li>
         </ul>
     </li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
     <li><a href="@string.Format("{0}{1}", basePath, "/Support/Contact")">Contact Support</a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
     @if (isLoggedIn)
     {
         var Claims = new List
