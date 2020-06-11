@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
@@ -23,6 +24,22 @@ namespace Orchard.Web {
             RegisterRoutes(RouteTable.Routes);
             _starter = new Starter<IOrchardHost>(HostInitialization, HostBeginRequest, HostEndRequest);
             _starter.OnApplicationStart(this);
+
+            MvcHandler.DisableMvcResponseHeader = true; //this line is to hide mvc header
+        }
+
+        void Application_Error(Object sender, EventArgs e)
+        {
+
+            var exception = Server.GetLastError();
+            if (exception == null)
+                return;
+
+            // Clear the error
+            Server.ClearError();
+
+            // Redirect to an error page
+            Response.Redirect("/ErrorPage");
         }
 
         protected void Application_BeginRequest() {
