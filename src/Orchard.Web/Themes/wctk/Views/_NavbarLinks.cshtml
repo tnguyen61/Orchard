@@ -2,29 +2,54 @@
 @using Orchard.Environment.Configuration;
 @{
     var isLoggedIn = Request.IsAuthenticated && User.Identity is System.Security.Principal.GenericIdentity;
-
     var appConfigAccessor = new AppConfigurationAccessor();
     var basePath = appConfigAccessor.GetConfiguration("ToolkitBasePath");
     var basePathHome = appConfigAccessor.GetConfiguration("ToolkitBasePathHome");
+
+    var url = Request.RawUrl;
+
+    if (isLoggedIn && (url == "/" || url == "/?AspxAutoDetectCookieSupport=1" || url.StartsWith("/?gatewayResponse=true") == true))
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "MyHome"));
+    }
+    else if (url.ToLower().StartsWith("/dashboards-reports") == true || url.ToLower().StartsWith("//dashboards-reports") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "Content/Dashboards"));
+    }
+    else if (url.ToLower().StartsWith("/low-voltage-system") == true || url.ToLower().StartsWith("//low-voltage-system") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "Content/ITFRCS"));
+    }
 }
 <ul class="nav navbar-nav">
-    <li id="nav-home"><a href="/">Home</a></li>
+    <li id="nav-home"><a href="@Url.Action("Index", "Home", new { area = "" })">Home</a></li>
     <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Knowledge Center<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
-            <li><a href=@string.Format("{0}{1}", basePathHome, "/knowledge-center")>Overview</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/knowledge-center")">Overview</a></li>
             <li><a href="@string.Format("{0}{1}", basePath, "/repository")">Resources/Documents</a></li>
             <li class="menu-item dropdown dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Topics</b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Additional Resources</a>
                 <ul class="dropdown-menu multi-level">
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Content/CSM")">Capital Strategy Management (CSM) Branch</a></li>
                     <li><a href="@string.Format("{0}{1}", basePathHome, "/bim-training-videos")">BIM Training Videos</a></li>
                     <li><a href="@string.Format("{0}{1}", basePathHome, "/bim-for-the-mhs")">Building Information Modeling (BIM)</a></li>
-                    <li><a href="@string.Format("{0}{1}", basePathHome, "/contracting-dha-facilities-division")">Contracting DHA Facilities Division</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Content/Contracting")">Contracting DHA Facilities Enterprise</a></li>
                     <li><a href="@string.Format("{0}{1}", basePathHome, "/DMLSS-FM-Video-Training")">Defense Medical Logistics Standard Support - Training Videos</a></li>
                     <li><a href="@string.Format("{0}{1}", basePathHome, "/energy-management-sustainability-in-the-mhs")">Energy Management & Sustainability in the MHS</a></li>
                     <li><a href="@string.Format("{0}{1}", basePathHome, "/facility-life-cycle-management-flcm")">Facility Life Cycle Management (FLCM)</a></li>
                     <li><a href="@string.Format("{0}{1}", basePathHome, "/facility-management-operations-fm-ops-landing-page")">Facility Management Operations (FM Ops) Landing Page</a></li>
-                    <li><a href="@string.Format("{0}{1}", basePathHome, "/mhs-builder-implementation")">MHS BUILDER Implementation</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/dmlss-fm")">Defense Medical Logistics Standard Support - Facility Management (DMLSS-FM)</a></li>
+                    <li><a href="https://dha.max.gov/milstd1691" target="_blank">Military Standard (MILSTD) 1691 Equipment</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/space-equipment-planning-system-seps")">Space & Equipment Planning System (SEPS)</a></li>
+                    <li><a href="http://www.wbdg.org/ccb/browse_cat.php?c=261" target="_blank">DoD Space Planning Criteria (SPC) for Health Facilities</a></li>
+                    <li><a href="https://www.wbdg.org/ffc/dod/mhs-templates" target="_blank">Military Health System (MHS) Templates</a></li>
+                    <li><a href="http://www.wbdg.org/ffc/dod/unified-facilities-criteria-ufc/ufc-4-510-01" target="_blank">Unified Facilities Criteria (UFC) 4-510-01 Design</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/dha-facilities-division")">DHA Facilities Enterprise</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePathHome, "/visitor-instructions")">DHHQ Visitor Instructions</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Content/ITFRCS")">IT/Facility Related Control Systems (FRCS)</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Accreditation")">Accreditation</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Content/DCA")">DCA Branch</a></li>
                 </ul>
             </li>
         </ul>
@@ -37,10 +62,8 @@
                 <ul class="dropdown-menu multi-level">
                     <li><a href="@string.Format("{0}{1}", basePath, "/Checklist")" class="dropdown-toggle" role="button" aria-expanded="true">Checklist Landing</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/checklist/viewall")">Browse Checklists</a></li>
-                    <li role="presentation" class="dropdown-header">Reports</li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/Checklist/Strategy")">Strategy Info</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/Checklist/StrategyReport")">Strategy Report</a></li>
-                    <li><a href="@string.Format("{0}{1}", basePath, "/Checklist/ChecklistPDF")">Checklist Printout</a></li>
                 </ul>
             </li>
 
@@ -59,28 +82,36 @@
                 <ul class="dropdown-menu">
                     <li><a href="@string.Format("{0}{1}", basePath, "/Project")" class="dropdown-toggle" role="button" aria-expanded="false">Projects Landing</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/project/viewall")">View Projects</a></li>
-                    <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateFacility")">Create Facility Project</a></li>
-                    <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateContract")">Create Contract Project</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateFacility")">Create Facility Project Folder</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateWorkingFolder")">Create Working Folder</a></li>
+                    <li><a href="@string.Format("{0}{1}", basePath, "/Project/CreateContract")">Create Contract Folder</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/ProjectTeam/ByTeam")">Manage Teams by Project</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/ProjectTeam/ByUser")">Manage Teams by User</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/Repository/Projects")">View/Edit Documents</a></li>
                 </ul>
             </li>
+
+            <li><a href="https://rpss.facilities.health.mil" class="dropdown-toggle" target="_blank"><b>RPSS</b></a></li>
         </ul>
     </li>
-
-    <li><a href="@string.Format(" {0}{1}", basePathHome, "/mhs-facilities-analytics-dashboard" )">Analytics</a></li>
-
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Real Property Management<b class="caret"></b></a>
+        <ul class="dropdown-menu multi-level">
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/real-property-management")">Real Property Management</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/dmlss-logicole-management")">DMLSS/LogiCole Management</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/dashboards-reports")">Dashboards/Reports</a></li>
+        </ul>
+    </li>
     <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
         <ul class="dropdown-menu multi-level">
-            <li><a href="@string.Format(" {0}{1}", basePathHome, "/frequently-asked-questions")">Frequently Asked Questions</a></li>
-            <li><a href="@string.Format(" {0}{1}", basePathHome, "/website-notices-policies-disclaimers")">Website Notices, Policies &amp; Disclaimers</a></li>
-            <li><a href="@string.Format(" {0}{1}", basePathHome, "/how-to-use-this-site")">How To Use This Site</a></li>
-            <li><a href="@string.Format(" {0}{1}", basePathHome, "/support-availability")">Support Availability</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/frequently-asked-questions")">Frequently Asked Questions</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/website-notices-policies-disclaimers")">Website Notices, Policies &amp; Disclaimers</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/how-to-use-this-site")">How To Use This Site</a></li>
+            <li><a href="@string.Format("{0}{1}", basePathHome, "/support-availability")">Support Availability</a></li>
             @if (isLoggedIn)
             {
-                <li><a href="@string.Format(" {0}{1}", basePath, "/MySupport/Tickets")">My Open Issues</a></li>
+                <li><a href="@string.Format("{0}{1}", basePath, "/MySupport/Tickets")">My Open Issues</a></li>
             }
 
         </ul>
@@ -112,12 +143,12 @@
         {
             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class=""></b></a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu multi-level">
                     <li><a href="@string.Format("{0}{1}", basePath, "/Admin")">View Users</a></li>
 
                     <li class="dropdown-submenu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support Email</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right" style="width:12em;">
                             <li><a href="@string.Format("{0}{1}", basePath, "/Admin/Compose")">Compose Email</a></li>
                             <li><a href="@string.Format("{0}{1}", basePath, "/Admin/SupportEmail")">Update System Email</a></li>
                             <li><a href="@string.Format("{0}{1}", basePath, "/CannedResponse/Index")">Canned Responses</a></li>
