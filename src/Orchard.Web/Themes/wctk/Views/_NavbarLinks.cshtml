@@ -5,6 +5,8 @@
     var appConfigAccessor = new AppConfigurationAccessor();
     var basePath = appConfigAccessor.GetConfiguration("ToolkitBasePath");
     var basePathHome = appConfigAccessor.GetConfiguration("ToolkitBasePathHome");
+    var identityProviderPath = appConfigAccessor.GetConfiguration("IdentifyProviderPath");
+    var rpssPath = appConfigAccessor.GetConfiguration("RPSSUrl");
 
     var url = Request.RawUrl;
 
@@ -14,11 +16,123 @@
     }
     else if (url.ToLower().StartsWith("/dashboards-reports") == true || url.ToLower().StartsWith("//dashboards-reports") == true)
     {
-        Response.Redirect(string.Format("{0}{1}", basePath, "Content/Dashboards"));
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/Dashboards"));
     }
     else if (url.ToLower().StartsWith("/low-voltage-system") == true || url.ToLower().StartsWith("//low-voltage-system") == true)
     {
-        Response.Redirect(string.Format("{0}{1}", basePath, "Content/ITFRCS"));
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/ITFRCS"));
+    }
+    else if (url.ToLower().StartsWith("/knowledge-center") == true || url.ToLower().StartsWith("//knowledge-center") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/knowledge_center"));
+    }
+    else if (url.ToLower().StartsWith("/bim-training-videos") == true || url.ToLower().StartsWith("//bim-training-videos") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/bim_training_videos"));
+    }
+    else if (url.ToLower().StartsWith("/bim-for-the-mhs") == true || url.ToLower().StartsWith("//bim-for-the-mhs") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/bim_for_the_mhs"));
+    }
+    else if (url.ToLower().StartsWith("/dmlss-fm-video-training") == true || url.ToLower().StartsWith("//dmlss-fm-video-training") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/DMLSS_FM_Video_Training"));
+    }
+    else if (url.ToLower().StartsWith("/energy-management-sustainability-in-the-mhs") == true || url.ToLower().StartsWith("//energy-management-sustainability-in-the-mhs") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/energy_management_sustainability_in_the_mhs"));
+    }
+    else if (url.ToLower().StartsWith("/facility-life-cycle-management-flcm") == true || url.ToLower().StartsWith("//facility-life-cycle-management-flcm") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/facility_life_cycle_management_flcm"));
+    }
+    else if (url.ToLower().StartsWith("/facility-management-operations-fm-ops-landing-page") == true || url.ToLower().StartsWith("//facility-management-operations-fm-ops-landing-page") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/facility_management_operations_fm_ops_landing_page"));
+    }
+    else if (url.ToLower().StartsWith("/dmlss-fm_roadmap") == true || url.ToLower().StartsWith("//dmlss-fm_roadmap") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/DMLSS_FM_Roadmap"));
+    }
+    else if (url.ToLower().StartsWith("/dmlss-fm") == true || url.ToLower().StartsWith("//dmlss-fm") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/dmlss_fm"));
+    }
+    else if (url.ToLower().StartsWith("/space-equipment-planning-system-seps") == true || url.ToLower().StartsWith("//space-equipment-planning-system-seps") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/space_equipment_planning_system_seps"));
+    }
+    else if (url.ToLower().StartsWith("/military-standard-milstd-1691-equipment") == true || url.ToLower().StartsWith("//military-standard-milstd-1691-equipment") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/military_standard_milstd_1691_equipment"));
+    }
+    else if (url.ToLower().StartsWith("/dha-facilities-division") == true || url.ToLower().StartsWith("//dha-facilities-division") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/dha_facilities_division"));
+    }
+    else if (url.ToLower().StartsWith("/adminsupport") == true || url.ToLower().StartsWith("//adminsupport") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/AdminSupport"));
+    }
+    else if (url.ToLower().StartsWith("/visitor-instructions") == true || url.ToLower().StartsWith("//visitor-instructions") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/visitor_instructions"));
+    }
+    else if (url.ToLower().StartsWith("/real-property-management") == true || url.ToLower().StartsWith("//real-property-management") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/real_property_management"));
+    }
+    else if (url.ToLower().StartsWith("/dmlss-logicole-management") == true || url.ToLower().StartsWith("//dmlss-logicole-management") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/dmlss_logicole_management"));
+    }
+    else if (url.ToLower().StartsWith("/frequently-asked-questions") == true || url.ToLower().StartsWith("//frequently-asked-questions") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/frequently_asked_questions"));
+    }
+    else if (url.ToLower().StartsWith("/how-to-use-this-site") == true || url.ToLower().StartsWith("//how-to-use-this-site") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/how_to_use_this_site"));
+    }
+    else if (url.ToLower().StartsWith("/security-roles") == true || url.ToLower().StartsWith("//security-roles") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/security_roles"));
+    }
+    else if (url.ToLower().StartsWith("/user-guides-knowledge-center") == true || url.ToLower().StartsWith("//user-guides-knowledge-center") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/user_guides_knowledge_center"));
+    }
+    else if (url.ToLower().StartsWith("/user-guides-project-tool") == true || url.ToLower().StartsWith("//user-guides-project-tool") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/user_guides_project_tool"));
+    }
+    else if (url.ToLower().StartsWith("/user-guides-world-class-checklist") == true || url.ToLower().StartsWith("//user-guides-world-class-checklist") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/user_guides_world_class_checklist"));
+    }
+    else if (url.ToLower().StartsWith("/user-guides-cidm") == true || url.ToLower().StartsWith("//user-guides-cidm") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/user_guides_cidm"));
+    }
+    else if (url.ToLower().StartsWith("/website-notices-policies-disclaimers") == true || url.ToLower().StartsWith("//website-notices-policies-disclaimers") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/website_notices_policies_disclaimers"));
+    }
+    else if (url.ToLower().StartsWith("/document-posting-restrictions") == true || url.ToLower().StartsWith("//document-posting-restrictions") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/document_posting_restrictions"));
+    }
+    else if (url.ToLower().StartsWith("/support-availability") == true || url.ToLower().StartsWith("//support-availability") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/support_availability"));
+    }
+    else if (url.ToLower().StartsWith("/contracting-dha-facilities-division") == true || url.ToLower().StartsWith("//contracting-dha-facilities-division") == true)
+    {
+        Response.Redirect(string.Format("{0}{1}", basePath, "/Content/Contracting"));
+    }
+    else if (url.ToLower().StartsWith("/registration-instructions") == true || url.ToLower().StartsWith("//registration-instructions") == true)
+    {
+        Response.Redirect("@identityProviderPath");
     }
 }
 <ul class="nav navbar-nav">
@@ -91,7 +205,7 @@
                 </ul>
             </li>
 
-            <li><a href="https://rpss.facilities.health.mil" class="dropdown-toggle" target="_blank"><b>RPSS</b></a></li>
+            <li><a href="@rpssPath" class="dropdown-toggle" target="_blank"><b>RPSS</b></a></li>
         </ul>
     </li>
     <li>
