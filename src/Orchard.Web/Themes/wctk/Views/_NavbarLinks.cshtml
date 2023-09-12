@@ -223,15 +223,8 @@
             <li><a href="@string.Format("{0}{1}", basePathHome, "/website-notices-policies-disclaimers")">Website Notices, Policies &amp; Disclaimers</a></li>
             <li><a href="@string.Format("{0}{1}", basePathHome, "/how-to-use-this-site")">How To Use This Site</a></li>
             <li><a href="@string.Format("{0}{1}", basePathHome, "/support-availability")">Support Availability</a></li>
-            @if (isLoggedIn)
-            {
-                <li><a href="@string.Format("{0}{1}", basePath, "/MySupport/Tickets")">My Open Issues</a></li>
-            }
-
         </ul>
     </li>
-
-    <li><a href="@string.Format("{0}{1}", basePath, "/Support/Contact")">Contact Support</a></li>
 </ul>
 
 <ul class="nav navbar-nav navbar-right">
