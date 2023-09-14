@@ -265,10 +265,6 @@
 
                     <li><a href="@string.Format("{0}{1}", basePath, "/Reindex")">Rebuild Document Index</a></li>
                     <li><a href="@string.Format("{0}{1}", basePath, "/Lookup/OrgType")">Lookups</a></li>
-                    @if (Claims[3].Value == "True")
-                    {
-                        <li><a href="@string.Format("{0}{1}", basePathHome, "/admin")">CMS Administrator</a></li>
-                    }
                     <li class="dropdown-submenu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports</a>
                         <ul class="dropdown-menu">
@@ -281,11 +277,6 @@
                 </ul>
             </li>
         }
-        else if (Claims[3].Value == "True")
-        {
-            <li><a href="@string.Format("{0}{1}", basePathHome, "/admin")">CMS Aministrator</a></li>
-        }
-
         <li class="btn btn-primary btn-xs">
             <a href="@string.Format("{0}{1}", basePathHome, "/Users/Account/Logoff")">Log Off</a>
         </li>
@@ -293,10 +284,10 @@
     else
     {
         <li class="btn btn-primary btn-xs">
-            <a href="@string.Format("{0}{1}", basePathHome, "/Users/Account/LogOn")">Sign In</a>
-        </li>
-        <li class="btn btn-register btn-xs">
-            <a href="@string.Format("{0}{1}", basePathHome, "/registration-instructions")">Request Access</a>
-        </li>
+			<a href="@string.Format("{0}{1}", basePath, "/Account/Login")">Sign In</a>
+		</li>
+		<li class="btn btn-register btn-xs">
+			<a href="@identityProviderPath">Request Access</a>
+		</li>
     }
 </ul>
